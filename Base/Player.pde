@@ -34,6 +34,24 @@ class Player {
     pos.add(dir);
   }
   
+  void checkBorders(){  //checking whether the player has reached the border of the screen, if so, pause movement in a certain direction
+    if(this.pos.x <= 0){
+     //left border reached 
+     this.pos.x = 1;
+    }
+    if(this.pos.x >= width){
+      //right border reached
+      this.pos.x = width - 1;
+    }
+    if(this.pos.y <= 0){
+      //upper border reached
+      this.pos.y = 1;
+    }
+    if(this.pos.y >= height){
+      //lower border reached
+      this.pos.y = height - 1;
+    }
+  }
 
   //---------------------------------------------------------------------------
   //shows player on screen
@@ -41,5 +59,7 @@ class Player {
     fill(200, 200, 0);
     stroke(200, 200, 0);
     ellipse(pos.x, pos.y, r, r);
+    
+    checkBorders();
   }
 }

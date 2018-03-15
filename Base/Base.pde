@@ -3,8 +3,9 @@ What we want to change:
  - detect wether right or left mouse button get pressed
  - use mouseclick for interactions
  - change how the player gets its coins set
- - change fontsize appropriately
  - slim code
+ - diagonal movement needs fixing
+ - make player stop at windowborder
  */
 
 //import statements
@@ -14,6 +15,8 @@ What we want to change:
 public UI mainUI = new UI();
 
 public Player player1;
+
+public Utility util = new Utility();
 
 private PVector newDir = new PVector();
 
@@ -58,23 +61,22 @@ void keyPressed() {
   if (keyCode == 39) { //right
     newDir.x = 1;
   }
-  println(newDir);
 }
 
 void keyReleased() {
-  switch(keyCode){
+  switch(keyCode) {
     //movement reset
-   case 37:
-   case 38:
-   case 39:
-   case 40:
-   newDir.x = 0;
-   newDir.y = 0;
-   break;
-   
-   //default statement
-   default:
-   break;
+  case 37:
+  case 38:
+  case 39:
+  case 40:
+    newDir.x = 0;
+    newDir.y = 0;
+    break;
+
+    //default statement
+  default:
+    break;
   }
 }
 
