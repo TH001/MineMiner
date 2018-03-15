@@ -1,8 +1,7 @@
 class Player {
 
-  //NEU!!!!!!!!!!!!!!!!!!!!
-  //Geschwindigkeit, gedacht für die flüssige Bewegung mit der Maus, man klickt und der Spieleer bewegt sich mit einer Geschwindigkeit v zu diesem geklickten Punkt
-  //private PVector v= new PVector(0,0);
+  //movement via mouse has been removed!
+  //movement via arrow-keys, mouse for interactions with UI etc.
 
   //variables for movement
   private PVector dir = new PVector(0, 0);
