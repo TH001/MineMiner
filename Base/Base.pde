@@ -1,3 +1,12 @@
+/*
+What we want to change:
+ - detect wether right or left mouse button get pressed
+ - use mouseclick for interactions
+ - change how the player gets its coins set
+ - change fontsize appropriately
+ - slim code
+ */
+
 //import statements
 
 
@@ -26,7 +35,7 @@ void draw() {
   background(50);
 
   //show UI
-  mainUI.show(player1.coins);
+  mainUI.show(player1);
 
   //show Player
   player1.move(newDir);
@@ -35,17 +44,39 @@ void draw() {
 
 //--------------------------------------------------------------------------------------------------
 //key registering methods
+void keyPressed() {
+  //detecting players movement
+  if (keyCode == 38) {
+    newDir.y = -1;
   }
-  if(keyCode==DOWN){
-    player1.pos.y++;
+  if (keyCode == 40) {  //down
+    newDir.y = 1;
   }
-  if(keyCode==LEFT){
-    player1.pos.x--;
+  if (keyCode == 37 ) { //left
+    newDir.x = -1;
   }
-  if(keyCode==RIGHT){
-    player1.pos.x++;
+  if (keyCode == 39) { //right
+    newDir.x = 1;
+  }
+  println(newDir);
+}
+
+void keyReleased() {
+  switch(keyCode){
+    //movement reset
+   case 37:
+   case 38:
+   case 39:
+   case 40:
+   newDir.x = 0;
+   newDir.y = 0;
+   break;
+   
+   //default statement
+   default:
+   break;
   }
 }
 
-  player1.dest(new PVector(mouseX,mouseY));
+void mousePressed() {
 }
