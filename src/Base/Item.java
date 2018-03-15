@@ -18,7 +18,7 @@ public class Item {
 		System.out.println("new Item: "+name);
 	}
 	
-	public String getItemname() {
+	public String getItemname() {//returns name
 		return itemname;
 	}
 	public int getStackSize() {
