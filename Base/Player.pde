@@ -7,13 +7,14 @@ class Player {
   private PVector dir = new PVector(0, 0);
   private PVector newPos = new PVector();
   private PVector pos = new PVector();
+  private PVector gridPos = new PVector();
 
   private Inventory inv;
 
   private int coins;
 
   private float r;
-  private float speed = 10;
+  private float speed = 3;
 
   //---------------------------------------------------------------------------
   //constructor  
@@ -34,10 +35,10 @@ class Player {
 
     this.newPos.x = this.pos.x;
     this.newPos.y = this.pos.y;
-    
+
     this.dir.setMag(speed);
     this.newPos.add(dir);
-    
+
     if (checkCollision()) {
       //collision
     } else {
@@ -45,11 +46,26 @@ class Player {
       this.pos.x = this.newPos.x;
       this.pos.y = this.newPos.y;
     }
+
+    calcGridPos();
   }
 
   private boolean checkCollision() { //checks if player is colliding with anything
     if (checkBorders()) {
       return true;
+    } else if (checkBoxes()) {
+      return true;
+    }
+    return false;
+  }
+
+  //--------------------------------------------------------------------------------------------------
+  //collision checking
+  boolean checkBoxes() {    //detect whether any box is too close to the player and he is colliding
+    for (Box b : mainMap.boxes) {
+      if (this.newPos.dist(b.pos) <= r && b.type != 1) {
+        return true;
+      }
     }
     return false;
   }
@@ -72,6 +88,11 @@ class Player {
       return true;
     }
     return false;
+  }
+
+  void calcGridPos() {
+    this.gridPos.x = this.pos.x / tileSize;
+    this.gridPos.y = this.pos.y / tileSize;
   }
 
   //---------------------------------------------------------------------------

@@ -32,9 +32,9 @@ class Map {
   
   //--------------------------------------------------------------------------------------------------
   //show method
-  void show(){
+  void show(boolean init_){
    for(Box b : boxes){
-     b.show();
+     b.show(init_);
    }
   }
   
@@ -52,17 +52,17 @@ class Map {
       for (int i = 0; i < map.pixels.length; i++) {
         //getting color value of certain pixel
         int col = map.pixels[i];
-
+        
         //setting terrain type corresponding to colour
-        if (col == -1) {               //white
+        if (col == -1) {               //white - walkable
           terrain[i] = 1;
-        } else if (col == -16777216) { //black
+        } else if (col == -16777216) {          //black
           terrain[i] = 2;
-        } else if (col == -16711936) { //green
+        } else if (col == -1703810) {         //pink - resource
           terrain[i] = 3;
-        } else if (col == -16776961) {   //blue
+        } else if (col == color(0)) {         //blue
           terrain[i] = 4;
-        } else if (col == -65536) {      //red
+        } else if (col == color(0)) {            //red
           terrain[i] = 5;
         } else {
           terrain[i] = 0;
@@ -84,6 +84,7 @@ class Map {
        
        boxes.add(tmp);
        tmp = null; //reset tmp variable
+       t++;
      }
     }
   }

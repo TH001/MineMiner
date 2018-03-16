@@ -2,10 +2,10 @@
 What we want to change:
  - detect wether right or left mouse button get pressed
  - use mouseclick for interactions
- - change how the player gets its coins set
  - slim code
- - diagonal movement needs fixing
- - resolve movement issue when releasing key
+ - add more textures
+ - add buildings
+ - refine textures and code
  */
 
 //import statements
@@ -29,6 +29,11 @@ public Utility util = new Utility();
 
 private PVector newDir = new PVector();
 
+//textures for the map
+public PImage stone;
+public PImage pavement;
+public PImage iron_ore;
+
 //--------------------------------------------------------------------------------------------------
 //main class body
 void setup() {
@@ -36,22 +41,24 @@ void setup() {
   colorMode(RGB);
   ellipseMode(CENTER);
 
+  util.importImages();
+
   //setting up player character
   player1 = new Player(100, 100, 20, 100);
 
   //mainMap
   mainMap = new Map(width, height, tileSize, tileSize, "../textures/maps/mainMap.png");
+  mainMap.show(true);
 }
 
 
 //--------------------------------------------------------------------------------------------------
 // draw method, gets called every frame
 void draw() {
-  background(50);
+  //background(50);
 
   //show map
-  mainMap.show();
-
+  mainMap.show(false);
 
   //show UI
   mainUI.show(player1);
@@ -101,7 +108,7 @@ void keyPressed() {
   if(keyCode == 130){
     mainUI.showDebug = !mainUI.showDebug;
   }
-  println(keyCode); //print keyCode for easier key implementation
+  //println(keyCode); //print keyCode for easier key implementation
 }
 
 void keyReleased() {

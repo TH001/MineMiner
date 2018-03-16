@@ -61,4 +61,12 @@ class Utility {
 
     dialog.setVisible(true);
   }
+
+  //--------------------------------------------------------------------------------------------------
+  //import files
+  void importImages() {
+    stone = loadImage("../textures/stone.png");
+    pavement = loadImage("../textures/pavement.png");
+    iron_ore = loadImage("../textures/iron_ore.png");
+  }
 }
