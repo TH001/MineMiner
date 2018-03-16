@@ -5,16 +5,8 @@ class UI {
   //--------------------------------------------------------------------------------------------------
   //constructor
   UI() {
-    //coinValue();
+  
   }
-
-  /*currently to be ignored
-   void openInventory(){
-   //square base, square is for slots as inventory space
-   quad(20,20, 220,20, 20,220, 220,220);
-   
-   }
-   */
 
   //showing the players amount of currency
   void coinValue(int coins_) {
@@ -77,7 +69,8 @@ class UI {
 
     //show text
     text("dir", tx, y1 + ty);
-    text(x_ + y_, tx, y1 + ty*2);
+    text(x_, tx, y1 + ty*2);
+    text(y_, tx, y1 + ty*3);
   }
 
   void openInv() {
