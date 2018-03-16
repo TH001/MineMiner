@@ -5,7 +5,8 @@ class Player {
 
   //variables for movement
   private PVector dir = new PVector(0, 0);
-  private PVector pos = new PVector(0, 50);
+  private PVector newPos = new PVector();
+  private PVector pos = new PVector();
 
   private Inventory inv;
 
@@ -16,49 +17,68 @@ class Player {
 
   //---------------------------------------------------------------------------
   //constructor  
-  Player(float r_, int coins_) {
+  Player(float x_, float y_, float r_, int coins_) {
+    this.pos.x = x_;
+    this.pos.y = y_;
 
-    inv = new Inventory();
+    this.inv = new Inventory();
 
-    coins = coins_;
-    r = r_;
+    this.coins = coins_;
+    this.r = r_;
   }
 
   //---------------------------------------------------------------------------
   //main method body
-  void move(PVector arg) { //updating the players movement direction
-    dir = arg;
+  void move(PVector arg) { //updating the players movement
+    this.dir = arg;
+
+    this.newPos.x = this.pos.x;
+    this.newPos.y = this.pos.y;
     
-    dir.setMag(speed);
-    pos.add(dir);
+    this.dir.setMag(speed);
+    this.newPos.add(dir);
+    
+    if (checkCollision()) {
+      //collision
+    } else {
+      //no collision
+      this.pos.x = this.newPos.x;
+      this.pos.y = this.newPos.y;
+    }
   }
-  
-  void checkBorders(){  //checking whether the player has reached the border of the screen, if so, pause movement in a certain direction
-    if(this.pos.x <= 0){
-     //left border reached 
-     this.pos.x = 1;
+
+  private boolean checkCollision() { //checks if player is colliding with anything
+    if (checkBorders()) {
+      return true;
     }
-    if(this.pos.x >= width){
+    return false;
+  }
+
+  boolean checkBorders() {  //checking whether the player has reached the border of the screen, if so, pause movement in a certain direction
+    if (this.newPos.x <= 0) {
+      //left border reached 
+      return true;
+    }
+    if (this.newPos.x >= width) {
       //right border reached
-      this.pos.x = width - 1;
+      return true;
     }
-    if(this.pos.y <= 0){
+    if (this.newPos.y <= 0) {
       //upper border reached
-      this.pos.y = 1;
+      return true;
     }
-    if(this.pos.y >= height){
+    if (this.newPos.y >= height) {
       //lower border reached
-      this.pos.y = height - 1;
+      return true;
     }
+    return false;
   }
 
   //---------------------------------------------------------------------------
   //shows player on screen
   void show() {  
-    fill(200, 200, 0);
-    stroke(200, 200, 0);
-    ellipse(pos.x, pos.y, r, r);
-    
-    checkBorders();
+    fill(255, 0, 0);
+    stroke(0);
+    ellipse(this.pos.x, this.pos.y, r, r);
   }
 }

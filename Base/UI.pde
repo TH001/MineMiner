@@ -1,7 +1,9 @@
 class UI { 
+  //variables
+  boolean showDebug = false;
 
-  int coins = 100;
-
+  //--------------------------------------------------------------------------------------------------
+  //constructor
   UI() {
     //coinValue();
   }
@@ -19,9 +21,16 @@ class UI {
 
     //show coins
     util.mainThemeUI();
-    quad(0, 0, 250, 0, 250, 45, 0, 45);
-    textSize(36);
-    fill(0, 255, 0);
+
+    float x1 = 0;
+    float x2 = 250;
+    float y1 = 0;
+    float y2 = 45;
+
+    quad(x1, y1, x2, y1, x2, y2, x1, y2);
+
+    util.mainTextUI();
+
     text("Coins: " + coins_, 10, 35);
   }
 
@@ -29,26 +38,70 @@ class UI {
   void playerPos(float x_, float y_) {
 
     util.mainThemeUI();
-    quad(250, 0, 310, 0, 310, 45, 250, 45);
-    textSize(12);
-    fill(255, 0, 0);
+
+    //coordinates window
+    float x1 = 0;
+    float x2 = 70;
+    float y1 = 560;
+    float y2 = 600;
+
+    float tx = x1 + 10;  // distance from left side stroke
+    float ty = 12;  //distance from top stroke
+
+    quad(x1, y1, x2, y1, x2, y2, x1, y2);
+
+    util.mainDebugTextUI();
 
     //show text
-    text("pos", 260, 12);
-    text("x: " + x_, 260, 24);
-    text("y: " + y_, 260, 36);
+    text("pos", tx, y1 + ty);
+    text("x: " + x_, tx, y1 + ty*2);
+    text("y: " + y_, tx, y1 + ty*3);
+  }
+
+  void playerDir(float x_, float y_) {
+
+    util.mainThemeUI();
+
+    float x1 = 70;
+    float x2 = 140;
+    float y1 = 560;
+    float y2 = 600;
+
+    float tx = x1 + 10;  // distance from left side stroke
+    float ty = 12;  //distance from top stroke
+
+
+    quad(x1, y1, x2, y1, x2, y2, x1, y2);
+
+    util.mainDebugTextUI();
+
+    //show text
+    text("dir", tx, y1 + ty);
+    text(x_ + y_, tx, y1 + ty*2);
   }
 
   void openInv() {
 
     util.mainThemeUI();
-    quad(310, 0, 500, 0, 500, 45, 310, 45);
+
+    float x1 = 310;
+    float x2 = 500;
+    float y1 = 0;
+    float y2 = 45;
+
+    quad(x1, y1, x2, y1, x2, y2, x1, y2);
   }
 
   //showing HUD via this method
   void show(Player p_) {
-    playerPos(parseInt(p_.pos.x), parseInt(p_.pos.y));
+    //usual
     coinValue(p_.coins);
     openInv();
+
+    //debug
+    if (showDebug == true) {
+      playerPos(parseInt(p_.pos.x), parseInt(p_.pos.y));
+      playerDir(parseInt(p_.dir.x), parseInt(p_.dir.y));
+    }
   }
 }

@@ -11,7 +11,7 @@ class Item {
 
   //--------------------------------------------------------------------------------------------------
   //constructor
-  public Item(String name_, int stackValue_, int startValue_, boolean durability_, double usage_) {
+  Item(String name_, int stackValue_, int startValue_, boolean durability_, double usage_) {
     itemname     = name_;
     stackSize    = stackValue_;
     value        = startValue_;
