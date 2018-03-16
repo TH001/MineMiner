@@ -23,9 +23,9 @@ class Box {
     if (nearPlayer() || init) {
       util.mapDebugTheme();
       if (type == 1) {
-        image(stone, this.pos.x, this.pos.y, this.size, this.size);
-      } else if (type == 2) {
         image(pavement, this.pos.x, this.pos.y, this.size, this.size);
+      } else if (type == 2) {
+        image(stone, this.pos.x, this.pos.y, this.size, this.size);
       } else if(type == 3){
         image(iron_ore, this.pos.x, this.pos.y, this.size, this.size);
       } else {
