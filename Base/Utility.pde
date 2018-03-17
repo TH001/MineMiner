@@ -149,6 +149,7 @@ class Utility {
       if (selling == false) {
         sell.show();
         selling = true;
+        player1.setBox(b_);
       } else if (selling == true) {
         sell.hide();
         selling = false;
@@ -156,6 +157,14 @@ class Utility {
     }
   }
 
+  void keepOpen(Box b_){
+   if(player1.pos.dist(b_.pos) <= b_.threshold){
+     
+   } else {
+    sell.hide();
+    selling = false;
+   }
+  }
   //--------------------------------------------------------------------------------------------------
   //controlP5
   void initiateCP5() {  //initialises ControlP5 utilities
@@ -164,16 +173,22 @@ class Utility {
     sell.addButton("SellIron" )  .setValue(0).setPosition(sellButtons.x + 1 * (buttonSize.x + off), sellButtons.y).setSize(parseInt(buttonSize.x), parseInt(buttonSize.y));
     sell.addButton("SellGold" )  .setValue(0).setPosition(sellButtons.x + 2 * (buttonSize.x + off), sellButtons.y).setSize(parseInt(buttonSize.x), parseInt(buttonSize.y));
     sell.addButton("SellDiamond").setValue(0).setPosition(sellButtons.x + 3 * (buttonSize.x + off), sellButtons.y).setSize(parseInt(buttonSize.x), parseInt(buttonSize.y));
+    
+    nav.addButton("ChangeMap")   .setValue(0).setPosition(width - 100, height - 40).setSize(90, 30);
   }
 
   //--------------------------------------------------------------------------------------------------
   //import files
   void importImages() {
     stone       = loadImage("../textures/stone.png");
+    grass       = loadImage("../textures/grass.png");
     pavement    = loadImage("../textures/pavement.png");
     iron_ore    = loadImage("../textures/iron_ore.png");
     gold_ore    = loadImage("../textures/gold_ore.png");
     diamond_ore = loadImage("../textures/diamond_ore.png");
+    forest      = loadImage("../textures/forest.png");
+    water       = loadImage("../textures/water.png");
+    lava        = loadImage("../textures/lava.png");
 
     market      = loadImage("../textures/market.png");
   }

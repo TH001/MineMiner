@@ -38,7 +38,12 @@ class Box {
     if (nearPlayer() || init) {
       util.mapDebugTheme();
       if (type == 1) {
-        image(pavement, this.pos.x, this.pos.y, this.size, this.size);
+        //show different pavement when map changes
+        if (mainMap == overworld) {
+          image(grass, this.pos.x, this.pos.y, this.size, this.size);
+        } else {
+          image(pavement, this.pos.x, this.pos.y, this.size, this.size);
+        }
       } else if (type == 2) {
         image(stone, this.pos.x, this.pos.y, this.size, this.size);
       } else if (type == 3) {
@@ -47,7 +52,13 @@ class Box {
         image(gold_ore, this.pos.x, this.pos.y, this.size, this.size);
       } else if (type == 5) {
         image(diamond_ore, this.pos.x, this.pos.y, this.size, this.size);
-
+      } else if (type == 6) {
+        image(forest, this.pos.x, this.pos.y, this.size, this.size);
+      } else if (type == 7) {
+        image(water, this.pos.x, this.pos.y, this.size, this.size);
+      } else if (type == 8) {
+        image(lava, this.pos.x, this.pos.y, this.size, this.size);
+        
         //buildings
       } else if (type == 100) {
         image(market, this.pos.x, this.pos.y, this.size, this.size);
