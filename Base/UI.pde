@@ -8,7 +8,7 @@ class UI {
   float y_UI_bot = 45;  
   float x_debug_UI;
   float y_debug_UI;
-    float y2_debug_UI;
+
   
 
   //--------------------------------------------------------------------------------------------------
