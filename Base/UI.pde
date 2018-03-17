@@ -6,8 +6,10 @@ class UI {
   float x_UI_w2 = 500;   //w2 = look above
   float y_UI_top = 0;    //differenz between y_UI_bot and y_UI_top = window height
   float y_UI_bot = 45;  
-  float x_debug_UI;
-  float y_debug_UI;
+  float x_debug_UI_w1 = 70;
+  float y_debug_UI_w2 = 140;
+  float y_debug_UI_top = height - 40;
+  float y_debug_UI_bot = height;
 
   
 
@@ -51,10 +53,9 @@ class UI {
     
     util.mainDebugTextUI();
     
-    text("Stone: " + stone_ + "   " + "Iron: " + iron_ + "   " +  "Gold: " + gold_ + "   " + "Diamond: " + diamond_, x_UI_w1 + 10, y_UI_top + 18);
-   
+    text("Stone: " + stone_ + "   " + "Iron: " + iron_ + "   " +  "Gold: " + gold_ + "   " + "Diamond: " + diamond_, x_UI_w1 + 10, y_UI_top + 18);   
+    
   }
-
 
 
   //--------------------------------------------------------------------------------------------------
@@ -66,10 +67,10 @@ class UI {
     util.mainThemeUI();
 
     //coordinates window
-    float x1 = 0;
-    float x2 = 70;
-    float y1 = 560;
-    float y2 = 600;
+    float x1 = x_UI;
+    float x2 = x_debug_UI_w1;
+    float y1 = y_debug_UI_top;
+    float y2 = y_debug_UI_bot;
 
     float tx = x1 + 10;  // distance from left side stroke
     float ty = 12;  //distance from top stroke
@@ -89,10 +90,10 @@ class UI {
 
     util.mainThemeUI();
 
-    float x1 = 70;
-    float x2 = 140;
-    float y1 = 560;
-    float y2 = 600;
+    float x1 = x_debug_UI_w1;
+    float x2 = y_debug_UI_w2;
+    float y1 = y_debug_UI_top;
+    float y2 = y_debug_UI_bot;
 
     float tx = x1 + 10;  // distance from left side stroke
     float ty = 12;  //distance from top stroke
