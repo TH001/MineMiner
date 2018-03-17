@@ -33,6 +33,8 @@ private PVector newDir = new PVector();
 public PImage stone;
 public PImage pavement;
 public PImage iron_ore;
+public PImage gold_ore;
+public PImage diamond_ore;
 
 //--------------------------------------------------------------------------------------------------
 //main class body
@@ -134,4 +136,9 @@ void keyReleased() {
 }
 
 void mousePressed() {
+  if(mouseButton == 37){
+    util.interact(util.interacted());
+  }
+  
+  println(mouseButton);
 }

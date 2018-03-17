@@ -63,10 +63,38 @@ class Utility {
   }
 
   //--------------------------------------------------------------------------------------------------
+  //interaction
+  Box interacted(){
+    PVector mouse = new PVector(mouseX, mouseY);
+    float minDist = width * height;
+    float currDist = 0;
+    Box curr = null;
+    
+    //check for box nearest to mouse
+    for(Box b : mainMap.boxes){
+      currDist = mouse.dist(b.posM);
+      
+      if(currDist <= minDist){
+        minDist = currDist;
+        curr = b;
+      }
+    }
+    
+    //return box nearest to mouse
+    return curr; 
+  }
+  
+  void interact(Box b_){
+    b_.type = 1;
+  }
+
+  //--------------------------------------------------------------------------------------------------
   //import files
   void importImages() {
-    stone = loadImage("../textures/stone.png");
-    pavement = loadImage("../textures/pavement.png");
-    iron_ore = loadImage("../textures/iron_ore.png");
+    stone       = loadImage("../textures/stone.png");
+    pavement    = loadImage("../textures/pavement.png");
+    iron_ore    = loadImage("../textures/iron_ore.png");
+    gold_ore    = loadImage("../textures/gold_ore.png");
+    diamond_ore = loadImage("../textures/diamond_ore.png");
   }
 }

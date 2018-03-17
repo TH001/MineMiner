@@ -56,13 +56,13 @@ class Map {
         //setting terrain type corresponding to colour
         if (col == -1) {               //white - walkable
           terrain[i] = 1;
-        } else if (col == -16777216) {          //black
+        } else if (col == -16777216) {        //black
           terrain[i] = 2;
-        } else if (col == -1703810) {         //pink - resource
+        } else if (col == -1703810) {         //pink - iron
           terrain[i] = 3;
-        } else if (col == color(0)) {         //blue
+        } else if (col == -2661) {            //yellow - gold
           terrain[i] = 4;
-        } else if (col == color(0)) {            //red
+        } else if (col == -16711681) {         //cyan - diamond
           terrain[i] = 5;
         } else {
           terrain[i] = 0;

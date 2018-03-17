@@ -1,6 +1,6 @@
 class Box {
   //variables
-  private int type = 0;
+  public int type = 0;
   private int size;
 
   private float threshold = 100;
