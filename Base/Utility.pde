@@ -1,6 +1,12 @@
 class Utility {
   //this class contains any utility functions which experience frequent use from all other classes
 
+  //variables
+  private PVector sellButtons = new PVector(200, 100);
+  private PVector buttonSize = new PVector(100, 30);
+
+  private float off = 10;
+
   //coloursetups
   void mainThemeUI() {    //main colourscheme for the UI
     fill(0, 0, 0, 100);
@@ -101,7 +107,6 @@ class Utility {
       return;
     }
     if (player1.inv.checkWeight()) {
-      println("Inventory full!");
       return;
     }
 
@@ -116,9 +121,24 @@ class Utility {
   }
 
   void open(Box b_) {
-    if (b_.type == 100) {
-      shop.show();
+    if (b_.type == 100) { //is selling point
+      if (selling == false) {
+        sell.show();
+        selling = true;
+      } else if (selling == true) {
+        sell.hide();
+        selling = false;
+      }
     }
+  }
+
+  //--------------------------------------------------------------------------------------------------
+  //controlP5
+  void initiateCP5() {  //initialises ControlP5 utilities
+    //buttons for selling resources
+    sell.addButton("SellStone").setValue(0).setPosition(sellButtons.x + 0 * (buttonSize.x + off), sellButtons.y).setSize(parseInt(buttonSize.x), parseInt(buttonSize.y));
+    sell.addButton("SellIron" ).setValue(0).setPosition(sellButtons.x + 1 * (buttonSize.x + off), sellButtons.y).setSize(parseInt(buttonSize.x), parseInt(buttonSize.y));
+    sell.addButton("SellGold" ).setValue(0).setPosition(sellButtons.x + 2 * (buttonSize.x + off), sellButtons.y).setSize(parseInt(buttonSize.x), parseInt(buttonSize.y));
   }
 
   //--------------------------------------------------------------------------------------------------
