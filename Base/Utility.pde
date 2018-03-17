@@ -9,29 +9,40 @@ class Utility {
 
   //--------------------------------------------------------------------------------------------------
   //constructor
-  Utility(float px_, float py_, float sx_, float sy_) {
+  Utility(float px_, float py_, float sx_, float sy_, float boff_) {
     sellButtons = new PVector(px_, py_);
     buttonSize  = new PVector(sx_, sy_);
+    off = boff_;
   }
 
-  //coloursetups
-  void mainThemeUI() {    //main colourscheme for the UI
+  //colorsetups
+  void mainThemeUI() {    //main colorscheme for the UI
     fill(0, 0, 0, 100);
     stroke(255);
   }
 
-  void mainTextUIcoin() {  //main textparameter for debuggtextfor the UI
+  void mainTextUIcoin() {  //main textparameter for current coins for the UI
     textSize(36);
     fill(0, 255, 0);
   }
 
-  void mainTextUIinv() {  //main textparameter for debuggtextfor the UI
+  void mainTextUIinv() {  //main textparameter for resources for the UI
     textSize(12);
     fill(0, 255, 0);
   }
 
+  void mainThemeUIinventorys() { //main colorscheme for temporary UI parts
+    fill(200, 200, 200);
+    stroke(255);
+  }
 
-  void mainDebugTextUI() {  //main textparameter for debuggtextfor the UI
+  void mainTextUIinventorys() { //main textparameter for temporary UI parts
+    textSize(12);
+    fill(255);
+  }
+
+
+  void mainDebugTextUI() {  //main textparameter for debugtextfor the UI
     textSize(12);
     fill(255, 0, 0);
   }

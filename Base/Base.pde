@@ -64,7 +64,7 @@ void setup() {
 
   //setting up UI and Utilities
   mainUI = new UI();
-  util   = new Utility(mainUI.px, mainUI.py, mainUI.sx, mainUI.sy);
+  util = new Utility(mainUI.px, mainUI.py, mainUI.sx, mainUI.sy, mainUI.boff);
 
   sell   = new ControlP5(this);
   sell.setAutoDraw(true);
