@@ -1,6 +1,6 @@
 /* version history
- Alpha 1.0 - 912 lines of code - Base, Box, Inventory, Item, Map, Market, Player, UI, Utility classes
- Alpha 1.1 - ... lines of code - Base, Bos, Inventory, Item, Map, Market, Player, UI, Utility classes
+ Alpha 1.0 - 912  lines of code - Base, Box, Inventory, Item, Map, Market, Player, UI, Utility         - 9 classes
+ Alpha 1.1 - 1074 lines of code - Base, Bos, Inventory, Item, Map, Market, Player, UI, Utility, Marker - 10 classes
  */
 
 /*
