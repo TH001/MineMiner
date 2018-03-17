@@ -12,15 +12,20 @@ public class Inventory {
 	private double inventoryweightlimit = 100;
 	private int tempstate = 0;
 	private double tempvalue = 0;
+	private String[][] inventoryout;
 	
 	public Inventory() {
 		//creating basic Items
-		createItem("wood", 64, 0, 0.5, false, 0);
-		createItem("stone", 64, 0, 1, false, 0);
-		createItem("iron", 64, 0, 1.5, false, 0);
-		createItem("gold", 64, 0, 2, false, 0);
-		createItem("diamond", 64, 0, 4, false, 0);
+		createItem("wood", 64, 0, 0.5, false, 1);
+		createItem("stone", 64, 0, 1, false, 1);
+		createItem("iron", 64, 0, 1.5, false, 1);
+		createItem("gold", 64, 0, 2, false, 1);
+		createItem("diamond", 64, 0, 4, false, 1);
 		
+	}
+	
+	public int getItemNummber() {
+		return nextitem;
 	}
 	
 	public int createItem(String name, int stackvalue, int startvalue, double weight, boolean duability, double usageprozentage) {
@@ -58,12 +63,19 @@ public class Inventory {
 				return tempstate;/** item added inventory */
 			}				
 		}
-		return -1;/** item does not exists in inventory */
+		return -1;/** item does not exists in inventory 
+		 * @return */
 	}
 	
-	public int outputallitems() {
-		
-		return 0;
+	
+	
+	public String[][] outputallitems() {
+		inventoryout = new String[nextitem][2];
+		for (int i = 0; i < nextitem; i++) {
+			inventoryout[i][0]=inventoryslot[i].getItemname();
+			inventoryout[i][1]=""+inventoryslot[i].getValue();
+		}
+		return inventoryout;
 	}
 
 }

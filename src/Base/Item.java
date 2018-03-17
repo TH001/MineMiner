@@ -46,6 +46,10 @@ public class Item {
 		}
 	}
 	
+	public int getValue() {
+		return value;
+	}
+	
 	public double getStackWeight() {
 		stackweight=value*itemweight;
 		System.out.println(getItemname()+" stack weight: "+stackweight);
