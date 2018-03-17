@@ -172,7 +172,7 @@ class UI {
     //coordinates window
     float nButton = 4; //number of buttons
     float nDistanceButtons = nButton - 1; //number of distances between buttons
-    float prizePos = 0.5;
+    float prizePos = 0.6;
     float b1 = 3; //border distance
     float x1 = px - b1;
     float x2 = px + nButton*sx + nDistanceButtons*boff + b1;
@@ -215,7 +215,6 @@ class UI {
     //usual
     coinValue(p_.coins);
     showInv(p_.inv.stone.size(), p_.inv.iron.size(), p_.inv.gold.size(), p_.inv.diamond.size());
-    buttonFrameMarket(m_.stonePrize, m_.ironPrize, m_.goldPrize, m_.diamondPrize);
 
 
     //debug
@@ -223,6 +222,10 @@ class UI {
       playerPos(parseInt(p_.pos.x), parseInt(p_.pos.y));
       playerDir(parseInt(p_.dir.x), parseInt(p_.dir.y));
       invSpace(parseInt(p_.inv.calcWeight()), parseInt(p_.inv.weightLimit));
+    }
+    
+    if (selling == true) {
+      buttonFrameMarket(m_.stonePrize, m_.ironPrize, m_.goldPrize, m_.diamondPrize);
     }
   }
 }
