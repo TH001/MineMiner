@@ -6,6 +6,7 @@ class Box {
   private float threshold = 100;
 
   private PVector pos = new PVector();
+  private PVector posM = new PVector();
 
   //--------------------------------------------------------------------------------------------------
   //constructor
@@ -15,6 +16,9 @@ class Box {
 
     this.pos.x = x_;
     this.pos.y = y_;
+    
+    this.posM.x = x_ + (size_ / 2);
+    this.posM.y = y_ + (size_ / 2);
   }
 
   //--------------------------------------------------------------------------------------------------
@@ -28,6 +32,10 @@ class Box {
         image(stone, this.pos.x, this.pos.y, this.size, this.size);
       } else if(type == 3){
         image(iron_ore, this.pos.x, this.pos.y, this.size, this.size);
+      } else if(type == 4){
+        image(gold_ore, this.pos.x, this.pos.y, this.size, this.size);
+      } else if(type == 5){
+        image(diamond_ore, this.pos.x, this.pos.y, this.size, this.size);
       } else {
         rect(this.pos.x, this.pos.y, this.size, this.size);
       }
