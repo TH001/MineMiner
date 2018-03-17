@@ -1,3 +1,7 @@
+/* version history
+Alpha 1.0 - 912 lines of code - Base, Box, Inventory, Item, Map, Market, Player, UI, Utility classes
+*/
+
 /*
 What we want to change:
  - slim code
@@ -13,6 +17,7 @@ import java.awt.*;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import controlP5.*;
 
 //variables
 private int tileSize = 10; //size of each maptile or box
@@ -20,6 +25,8 @@ private int tileSize = 10; //size of each maptile or box
 public float intRadius = 100;
 
 private boolean fogOfWar = true;
+
+public boolean selling = false;
 
 private PVector startPos = new PVector(100, 100);
 private PVector newDir = new PVector();
@@ -30,6 +37,9 @@ public Player player1;
 public Map mainMap;
 public Utility util = new Utility();
 public Market shop =new Market();
+
+//tools for buttons etc in UI
+ControlP5 sell;
 
 //textures for the map
 public PImage stone;
@@ -47,7 +57,11 @@ void setup() {
   colorMode(RGB);
   ellipseMode(CENTER);
 
+  sell = new ControlP5(this);
+  sell.setAutoDraw(true);
+
   util.importImages();
+  util.initiateCP5();
 
   //setting up UI
   mainUI = new UI();
@@ -57,22 +71,25 @@ void setup() {
 
   //mainMap
   mainMap = new Map(width, height, tileSize, tileSize, "../textures/maps/mainMap.png");
-  if(!fogOfWar){
+  if (!fogOfWar) {
     mainMap.show(true);
   }
+  
+  //setting CP% windows to hide
+  sell.hide();
 }
 
 
 //--------------------------------------------------------------------------------------------------
 // draw method, gets called every frame
 void draw() {
-  
+
   //reserved for print statements
-  
+
   //
-  
-  if(fogOfWar){
-  background(0);
+
+  if (fogOfWar) {
+    background(0);
   }
 
   //show map
@@ -85,6 +102,9 @@ void draw() {
   //show Player
   player1.move(newDir);
   player1.show();
+
+  //show ControlP5 interaction windows
+  
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -123,7 +143,7 @@ void keyPressed() {
   if (keyCode == 39) { //right
     newDir.x = 1;
   }
-  if(keyCode == 130){
+  if (keyCode == 130) {
     mainUI.showDebug = !mainUI.showDebug;
   }
   //println(keyCode); //print keyCode for easier key implementation
@@ -152,15 +172,25 @@ void keyReleased() {
 }
 
 void mousePressed() {
-  if(mouseButton == 37){  //LMB
+  if (mouseButton == 37) {  //LMB
     util.interact(util.interacted(), "mine");
   }
-  
-  if(mouseButton == 38){  //MMB
-    
+
+  if (mouseButton == 38) {  //MMB
   }
-  
-  if(mouseButton == 39){  //RMB
-    
+
+  if (mouseButton == 39) {  //RMB
+    util.interact(util.interacted(), "open");
   }
+}
+
+//--------------------------------------------------------------------------------------------------
+//controlP5 events
+void SellStone() {
+}
+
+void SellIron() {
+}
+
+void SellGold() {
 }
