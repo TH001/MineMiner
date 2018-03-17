@@ -27,7 +27,7 @@ public class Item {
 	public int getStackSize() {
 		return stacksize;
 	}
-	public int changevalue(int itemnumber) {
+	public int changeValue(int itemnumber) {
 		if(value+itemnumber>stacksize) {
 			value=stacksize;
 			System.out.println(getItemname()+" changed value to: "+value);

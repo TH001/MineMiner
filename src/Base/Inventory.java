@@ -12,6 +12,7 @@ public class Inventory {
 	private double inventoryweightlimit = 100;
 	private int tempstate = 0;
 	private double tempvalue = 0;
+	private int shifting;
 	private String[][] inventoryout;
 	
 	public Inventory() {
@@ -37,6 +38,22 @@ public class Inventory {
 		return 0;
 	}
 	
+	public int clearItem(String name) {
+		for (int i = 0; i < nextitem; i++) {
+			if(shifting!=1) {
+				if(inventoryslot[i].getItemname()==name) {
+					System.out.println(inventoryslot[i].getItemname()+" slot cleared");
+					inventoryslot[i]=inventoryslot[i+1];
+					nextitem=nextitem-1;
+				}
+			}
+			else {
+				inventoryslot[i]=inventoryslot[i+1];
+			}
+		}
+		return 1;//item does not even exits
+	}
+	
 	public double getInventoryWeight() {
 		inventoryweight= 0;
 		for (int i = 0; i < nextitem; i++) {
@@ -55,9 +72,9 @@ public class Inventory {
 		 *  returns the number missing in inventory as neg. digits
 		 *  returns 0 if everything correct
 		 *  returns pos. digits when there are to many Items*/
-		for (int i = 0; i < inventoryslot.length; i++) {
+		for (int i = 0; i < nextitem; i++) {
 			if (inventoryslot[i].getItemname()==name) {
-				tempstate=inventoryslot[i].changevalue(value);
+				tempstate=inventoryslot[i].changeValue(value);
 				if(tempstate>0)return tempstate;/**Item over stacksize */
 				else if(tempstate<0)return tempstate;/** Item empty*/
 				return tempstate;/** item added inventory */
