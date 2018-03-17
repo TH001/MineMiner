@@ -4,9 +4,9 @@ class Player {
   //movement via arrow-keys, mouse for interactions with UI etc.
 
   //variables for movement
-  private PVector dir = new PVector(0, 0);
-  private PVector newPos = new PVector();
-  private PVector pos = new PVector();
+  private PVector dir     = new PVector(0, 0);
+  private PVector newPos  = new PVector();
+  private PVector pos     = new PVector();
   private PVector gridPos = new PVector();
 
   private Inventory inv;
@@ -94,7 +94,13 @@ class Player {
     this.gridPos.x = this.pos.x / tileSize;
     this.gridPos.y = this.pos.y / tileSize;
   }
-
+  
+  //--------------------------------------------------------------------------------------------------
+  //get and set methods
+  void addCoins(float arg){
+    this.coins += arg;
+  }
+  
   //---------------------------------------------------------------------------
   //shows player on screen
   void show() {  
@@ -102,7 +108,7 @@ class Player {
     fill(255, 255, 255, 0);
     stroke(255, 255, 255, 100);
     ellipse(this.pos.x, this.pos.y, intRadius * 2, intRadius * 2);
-    
+
     //show player
     fill(255, 0, 0);
     stroke(0);

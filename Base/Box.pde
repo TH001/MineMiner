@@ -5,10 +5,10 @@ class Box {
 
   private float threshold = 150;
 
-  private boolean mineable = true;
+  private boolean mineable     = true;
   private boolean interactable = false;
 
-  private PVector pos = new PVector();
+  private PVector pos  = new PVector();
   private PVector posM = new PVector();
 
   //--------------------------------------------------------------------------------------------------

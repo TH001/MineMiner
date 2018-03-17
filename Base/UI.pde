@@ -4,19 +4,19 @@ class UI {
 
   //window option UI
   float x_UI = 0;
-  float x_UI_w1 = 250;   //w1 = end of first window, start of second window
-  float x_UI_w2 = 460;   //w2 = look above
-  float y_UI_top = 0;    //differenz between y_UI_bot and y_UI_top = window height
+  float x_UI_w1  = 250;   //w1 = end of first window, start of second window
+  float x_UI_w2  = 460;   //w2 = look above
+  float y_UI_top = 0;     //differenz between y_UI_bot and y_UI_top = window height
   float y_UI_bot = 45;
   //window option DebugUI
-  float x_debug_UI_w1 = 70;
-  float x_debug_UI_w2 = 140;
-  float x_debug_UI_w3 = 210;
+  float x_debug_UI_w1   = 70;
+  float x_debug_UI_w2   = 140;
+  float x_debug_UI_w3   = 210;
   float y_debug_UI_top;
   float y_debug_UI_bot;
   //window options text pos
-  float x_UI_text = 10;
-  float y_UI_text_coin = 35;
+  float x_UI_text       = 10;
+  float y_UI_text_coin  = 35;
   float y_debug_UI_text = 12;
 
   //controlP5 button parameters
@@ -154,7 +154,7 @@ class UI {
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 
-    util.mainDebugTextUI();
+    util.mainTextUIinv();
 
     //show text
     text("InvSpace", tx, y1 + ty);

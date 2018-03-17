@@ -11,7 +11,7 @@ class Utility {
   //constructor
   Utility(float px_, float py_, float sx_, float sy_) {
     sellButtons = new PVector(px_, py_);
-    buttonSize = new PVector(sx_, sy_);
+    buttonSize  = new PVector(sx_, sy_);
   }
 
   //coloursetups

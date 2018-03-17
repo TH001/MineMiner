@@ -1,13 +1,15 @@
 /* version history
  Alpha 1.0 - 912 lines of code - Base, Box, Inventory, Item, Map, Market, Player, UI, Utility classes
+ Alpha 1.1 - ... lines of code - Base, Bos, Inventory, Item, Map, Market, Player, UI, Utility classes
  */
 
 /*
 What we want to change:
- - slim code
+ - slim code, do more cleanup
+ - finish market
  - add more textures
  - add buildings
- - refine textures and code
+ - add other textures, change textures
  */
 
 //import statements
@@ -21,6 +23,8 @@ import controlP5.*;
 
 //variables
 private int tileSize = 10; //size of each maptile or box
+private int cicle    = 300;
+private int ccicle   = 0;
 
 public float intRadius = 100;
 
@@ -54,14 +58,15 @@ public PImage market;
 //main class body
 void setup() {
   size(1000, 600);
+  frameRate(30);
   colorMode(RGB);
   ellipseMode(CENTER);
 
   //setting up UI and Utilities
   mainUI = new UI();
-  util = new Utility(mainUI.px, mainUI.py, mainUI.sx, mainUI.sy);
+  util   = new Utility(mainUI.px, mainUI.py, mainUI.sx, mainUI.sy);
 
-  sell = new ControlP5(this);
+  sell   = new ControlP5(this);
   sell.setAutoDraw(true);
 
   util.importImages();
@@ -104,7 +109,13 @@ void draw() {
   player1.move(newDir);
   player1.show();
 
-  //show ControlP5 interaction windows
+  //update market
+  if (ccicle == cicle) {
+    shop.updatePrizes();
+    ccicle = 0;
+  } else {
+    ccicle++;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -187,14 +198,25 @@ void mousePressed() {
 //--------------------------------------------------------------------------------------------------
 //controlP5 events
 void SellStone() {
-  //player1.inv;
+  if (player1 != null) {
+    player1.inv.sell("stone");
+  }
 }
 
 void SellIron() {
+  if (player1 != null) {
+    player1.inv.sell("iron");
+  }
 }
 
 void SellGold() {
+  if (player1 != null) {
+    player1.inv.sell("gold");
+  }
 }
 
 void SellDiamond() {
+  if (player1 != null) {
+    player1.inv.sell("diamond");
+  }
 }
