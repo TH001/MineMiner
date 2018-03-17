@@ -4,26 +4,27 @@ class UI {
 
   //window option UI
   float x_UI = 0;
-  float x_UI_w1 = 250;   //w1 = end of first window, start of second window
-  float x_UI_w2 = 460;   //w2 = look above
-  float y_UI_top = 0;    //differenz between y_UI_bot and y_UI_top = window height
+  float x_UI_w1  = 250;   //w1 = end of first window, start of second window
+  float x_UI_w2  = 460;   //w2 = look above
+  float y_UI_top = 0;     //differenz between y_UI_bot and y_UI_top = window height
   float y_UI_bot = 45;
   //window option DebugUI
-  float x_debug_UI_w1 = 70;
-  float x_debug_UI_w2 = 140;
-  float x_debug_UI_w3 = 210;
+  float x_debug_UI_w1   = 70;
+  float x_debug_UI_w2   = 140;
+  float x_debug_UI_w3   = 210;
   float y_debug_UI_top;
   float y_debug_UI_bot;
   //window options text pos
-  float x_UI_text = 10;
-  float y_UI_text_coin = 35;
+  float x_UI_text       = 10;
+  float y_UI_text_coin  = 35;
   float y_debug_UI_text = 12;
 
-  //controlP5 button parameters
+  //controlP5 button parameters market
   public float px = 100;
   public float py = 100;
   public float sx = 100;
   public float sy = 30;
+  public float boff = 10;
 
 
 
@@ -143,32 +144,79 @@ class UI {
 
     util.mainThemeUI();
 
+    //coordinates window
     float x1 = x_debug_UI_w2;
     float x2 = x_debug_UI_w3;
     float y1 = y_debug_UI_top;
     float y2 = y_debug_UI_bot;
-
+    //coordinates text
     float tx = x_debug_UI_w2 + x_UI_text;  // distance from left side stroke
     float ty = y_debug_UI_text;  //distance from top stroke
 
-
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 
-    util.mainDebugTextUI();
+    util.mainTextUIinv();
 
     //show text
     text("InvSpace", tx, y1 + ty);
     text(invSpace_, tx, y1 + ty*2);
     text(maxSpace_, tx, y1 + ty*3);
   }
+  //--------------------------------------------------------------------------------------------------
+
+  //frame for buttons on market when sell
+  void buttonFrameMarket(float stonePrize_, float ironPrize_, float goldPrize_, float diamondPrize_) {
+
+    util.mainThemeUIinventorys();
+
+    //coordinates window
+    float nButton = 4; //number of buttons
+    float nDistanceButtons = nButton - 1; //number of distances between buttons
+    float prizePos = 0.5;
+    float b1 = 3; //border distance
+    float x1 = px - b1;
+    float x2 = px + nButton*sx + nDistanceButtons*boff + b1;
+    float y1 = py - 16;
+    float y2 = py + sy + b1;
+    //coordinates text
+    //text Value
+    float tx0 = px;
+    float ty0 = py - b1;
+    //button sell stone
+    float tx1 = (px + b1) + (sx * ((1*nButton)/nButton)) + ((((1*nButton)/nButton)-1)*boff) - (prizePos*sx); //just dont ask
+    float ty1 = py - b1;
+    //button sell iron
+    float tx2 = (px + b1) + (sx * ((2*nButton)/nButton)) + ((((2*nButton)/nButton)-1)*boff) - (prizePos*sx);    
+    float ty2 = py - b1;   
+    //button sell gold
+    float tx3 = (px + b1) + (sx * ((3*nButton)/nButton)) + ((((3*nButton)/nButton)-1)*boff) - (prizePos*sx);
+    float ty3 = py - b1;
+    //button sell diamonds
+    float tx4 = (px + b1) + (sx * ((4*nButton)/nButton)) + ((((4*nButton)/nButton)-1)*boff) - (prizePos*sx);
+    float ty4 = py - b1;
+
+    quad(x1, y1, x2, y1, x2, y2, x1, y2);
+
+    util.mainTextUIinventorys();
+
+    //show text
+    text("Value:"     , tx0, ty0);
+    text(stonePrize_  , tx1, ty1);
+    text(ironPrize_   , tx2, ty2);
+    text(goldPrize_   , tx3, ty3);
+    text(diamondPrize_, tx4, ty4);
+   
+  }
 
 
   //--------------------------------------------------------------------------------------------------
   //showing HUD via this method
-  void show(Player p_) {
+  void show(Player p_, Market m_) {
     //usual
     coinValue(p_.coins);
     showInv(p_.inv.stone.size(), p_.inv.iron.size(), p_.inv.gold.size(), p_.inv.diamond.size());
+    buttonFrameMarket(m_.stonePrize, m_.ironPrize, m_.goldPrize, m_.diamondPrize);
+
 
     //debug
     if (showDebug == true) {

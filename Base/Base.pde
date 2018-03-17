@@ -1,13 +1,15 @@
 /* version history
- Alpha 1.0 - 912 lines of code - Base, Box, Inventory, Item, Map, Market, Player, UI, Utility classes
+ Alpha 1.0 - 912  lines of code - Base, Box, Inventory, Item, Map, Market, Player, UI, Utility         - 9 classes
+ Alpha 1.1 - 1074 lines of code - Base, Bos, Inventory, Item, Map, Market, Player, UI, Utility, Marker - 10 classes
  */
 
 /*
 What we want to change:
- - slim code
+ - slim code, do more cleanup
+ - finish market
  - add more textures
  - add buildings
- - refine textures and code
+ - add other textures, change textures
  */
 
 //import statements
@@ -21,6 +23,8 @@ import controlP5.*;
 
 //variables
 private int tileSize = 10; //size of each maptile or box
+private int cicle    = 300;
+private int ccicle   = 0;
 
 public float intRadius = 100;
 
@@ -35,18 +39,25 @@ private PVector newDir = new PVector();
 public UI mainUI;
 public Player player1;
 public Map mainMap;
+public Map underworld;
+public Map overworld;
 public Utility util;
-public Market shop =new Market();
+public Market shop = new Market();
 
 //tools for buttons etc in UI
 ControlP5 sell;
+ControlP5 nav;
 
 //textures for the map
 public PImage stone;
+public PImage grass;
 public PImage pavement;
 public PImage iron_ore;
 public PImage gold_ore;
 public PImage diamond_ore;
+public PImage forest;
+public PImage water;
+public PImage lava;
 
 public PImage market;
 
@@ -54,15 +65,21 @@ public PImage market;
 //main class body
 void setup() {
   size(1000, 600);
+  frameRate(60);
   colorMode(RGB);
   ellipseMode(CENTER);
 
+  println(color(255, 74, 0));
+
   //setting up UI and Utilities
   mainUI = new UI();
-  util = new Utility(mainUI.px, mainUI.py, mainUI.sx, mainUI.sy);
+  util = new Utility(mainUI.px, mainUI.py, mainUI.sx, mainUI.sy, mainUI.boff);
 
-  sell = new ControlP5(this);
+  sell   = new ControlP5(this);
+  nav    = new ControlP5(this);
+
   sell.setAutoDraw(true);
+  nav.setAutoDraw(true);
 
   util.importImages();
   util.initiateCP5();
@@ -71,8 +88,14 @@ void setup() {
   player1 = new Player(startPos.x, startPos.y, 20, 100);
 
   //mainMap
-  mainMap = new Map(width, height, tileSize, tileSize, "../textures/maps/mainMap.png");
-  if (!fogOfWar) {
+  underworld = new Map(width, height, tileSize, tileSize, "../textures/maps/mainMap.png");
+
+  //overworld
+  overworld = new Map(width, height, tileSize, tileSize, "../textures/maps/overworld.png");
+
+  //mainMap
+  mainMap = overworld;
+  if (!fogOfWar || mainMap == overworld) {
     mainMap.show(true);
   }
 
@@ -89,7 +112,7 @@ void draw() {
 
   //
 
-  if (fogOfWar) {
+  if (fogOfWar && mainMap == underworld) {
     background(0);
   }
 
@@ -97,14 +120,20 @@ void draw() {
   mainMap.show(false);
 
   //show UI
-  mainUI.show(player1);
+  mainUI.show(player1, shop);
 
   resizeDir();
   //show Player
   player1.move(newDir);
   player1.show();
 
-  //show ControlP5 interaction windows
+  //update market
+  if (ccicle == cicle) {
+    shop.updatePrizes();
+    ccicle = 0;
+  } else {
+    ccicle++;
+  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -187,14 +216,37 @@ void mousePressed() {
 //--------------------------------------------------------------------------------------------------
 //controlP5 events
 void SellStone() {
-  //player1.inv;
+  if (player1 != null) {
+    player1.inv.sell("stone");
+  }
 }
 
 void SellIron() {
+  if (player1 != null) {
+    player1.inv.sell("iron");
+  }
 }
 
 void SellGold() {
+  if (player1 != null) {
+    player1.inv.sell("gold");
+  }
 }
 
 void SellDiamond() {
+  if (player1 != null) {
+    player1.inv.sell("diamond");
+  }
+}
+
+void ChangeMap() {
+  if (player1 != null) {
+    if (mainMap == overworld) {
+      mainMap = underworld;
+    } else {
+      mainMap = overworld;
+      mainMap.show(true);
+    }
+    player1.pos = startPos;
+  }
 }
