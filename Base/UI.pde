@@ -172,6 +172,7 @@ class UI {
     //coordinates window
     float nButton = 4; //number of buttons
     float nDistanceButtons = nButton - 1; //number of distances between buttons
+    float prizePos = 0.5;
     float b1 = 3; //border distance
     float x1 = px - b1;
     float x2 = px + nButton*sx + nDistanceButtons*boff + b1;
@@ -179,19 +180,19 @@ class UI {
     float y2 = py + sy + b1;
     //coordinates text
     //text Value
-    float tx0 = px + b1;
+    float tx0 = px;
     float ty0 = py - b1;
     //button sell stone
-    float tx1 = (px + b1) + (sx * ((1*nButton)/nButton)) + ((((1*nButton)/nButton)-1)*boff) - (0.5*sx); //just dont ask
+    float tx1 = (px + b1) + (sx * ((1*nButton)/nButton)) + ((((1*nButton)/nButton)-1)*boff) - (prizePos*sx); //just dont ask
     float ty1 = py - b1;
     //button sell iron
-    float tx2 = (px + b1) + (sx * ((2*nButton)/nButton)) + ((((2*nButton)/nButton)-1)*boff) - (0.5*sx);    
+    float tx2 = (px + b1) + (sx * ((2*nButton)/nButton)) + ((((2*nButton)/nButton)-1)*boff) - (prizePos*sx);    
     float ty2 = py - b1;   
     //button sell gold
-    float tx3 = (px + b1) + (sx * ((3*nButton)/nButton)) + ((((3*nButton)/nButton)-1)*boff) - (0.5*sx);
+    float tx3 = (px + b1) + (sx * ((3*nButton)/nButton)) + ((((3*nButton)/nButton)-1)*boff) - (prizePos*sx);
     float ty3 = py - b1;
     //button sell diamonds
-    float tx4 = (px + b1) + (sx * ((4*nButton)/nButton)) + ((((4*nButton)/nButton)-1)*boff) - (0.5*sx);
+    float tx4 = (px + b1) + (sx * ((4*nButton)/nButton)) + ((((4*nButton)/nButton)-1)*boff) - (prizePos*sx);
     float ty4 = py - b1;
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
