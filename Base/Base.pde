@@ -25,13 +25,11 @@ private PVector startPos = new PVector(100, 100);
 private PVector newDir = new PVector();
 
 //istances of custom classes
-public UI mainUI = new UI();
-
+public UI mainUI;
 public Player player1;
-
 public Map mainMap;
-
 public Utility util = new Utility();
+public Market shop =new Market();
 
 //textures for the map
 public PImage stone;
@@ -50,6 +48,9 @@ void setup() {
   ellipseMode(CENTER);
 
   util.importImages();
+
+  //setting up UI
+  mainUI = new UI();
 
   //setting up player character
   player1 = new Player(startPos.x, startPos.y, 20, 100);

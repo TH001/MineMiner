@@ -1,7 +1,9 @@
 class UI { 
   //variables
   boolean showDebug = false;
+
   //window option UI
+
   float x_UI = 0;
   float x_UI_w1 = 250;   //w1 = end of first window, start of second window
   float x_UI_w2 = 500;   //w2 = look above
@@ -10,6 +12,7 @@ class UI {
   //window option DebugUI
   float x_debug_UI_w1 = 70;
   float y_debug_UI_w2 = 140;
+
   float y_debug_UI_top = height - 40;
   float y_debug_UI_bot = height;
   //window options text pos
@@ -17,11 +20,15 @@ class UI {
   float y_UI_text = 35;
   float y_debug_UI_text = 12;
 
+
+
   
 
   //--------------------------------------------------------------------------------------------------
   //constructor
-  UI() {
+  UI() {    
+    y_debug_UI_top = height - 40;
+    y_debug_UI_bot = height;
   }
   
   //--------------------------------------------------------------------------------------------------
@@ -84,8 +91,10 @@ class UI {
     float y1 = y_debug_UI_top;
     float y2 = y_debug_UI_bot;
 
+
     float tx = x_UI_text;  // distance from left side stroke
     float ty = y_debug_UI_text;  //distance from top stroke
+    
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 

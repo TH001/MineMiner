@@ -5,6 +5,9 @@ class Box {
 
   private float threshold = 150;
 
+  private boolean mineable = true;
+  private boolean interactable = false;
+
   private PVector pos = new PVector();
   private PVector posM = new PVector();
 
@@ -16,9 +19,17 @@ class Box {
 
     this.pos.x = x_;
     this.pos.y = y_;
-    
+
     this.posM.x = x_ + (size_ / 2);
     this.posM.y = y_ + (size_ / 2);
+
+    if (type >= 100) {
+      this.mineable = false;
+      this.interactable = true;
+    } else {
+      this.mineable = true;
+      this.interactable = false;
+    }
   }
 
   //--------------------------------------------------------------------------------------------------
@@ -30,20 +41,19 @@ class Box {
         image(pavement, this.pos.x, this.pos.y, this.size, this.size);
       } else if (type == 2) {
         image(stone, this.pos.x, this.pos.y, this.size, this.size);
-      } else if(type == 3){
+      } else if (type == 3) {
         image(iron_ore, this.pos.x, this.pos.y, this.size, this.size);
-      } else if(type == 4){
+      } else if (type == 4) {
         image(gold_ore, this.pos.x, this.pos.y, this.size, this.size);
-      } else if(type == 5){
+      } else if (type == 5) {
         image(diamond_ore, this.pos.x, this.pos.y, this.size, this.size);
-        
-       //buildings
+
+        //buildings
       } else if (type == 100) {
         image(market, this.pos.x, this.pos.y, this.size, this.size);
       } else {
         rect(this.pos.x, this.pos.y, this.size, this.size);
       }
-
     }
   }
 
@@ -55,14 +65,14 @@ class Box {
     }
     return false;
   }
-  
+
   //--------------------------------------------------------------------------------------------------
   //get and set methods
-  int getType(){
+  int getType() {
     return this.type;
   }
-  
-  void setType(int type_){
+
+  void setType(int type_) {
     this.type = type_;
   }
 }
