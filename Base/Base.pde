@@ -69,8 +69,6 @@ void setup() {
   colorMode(RGB);
   ellipseMode(CENTER);
 
-  println(color(255, 74, 0));
-
   //setting up UI and Utilities
   mainUI = new UI();
   util = new Utility(mainUI.px, mainUI.py, mainUI.sx, mainUI.sy, mainUI.boff);

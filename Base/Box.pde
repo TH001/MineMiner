@@ -30,6 +30,17 @@ class Box {
       this.mineable = true;
       this.interactable = false;
     }
+    
+    //unmineable objects
+    switch(type_){
+      case 7:  //water
+      case 8:  //lava
+      
+      mineable = false;
+      break;
+      default:
+      break;
+    }
   }
 
   //--------------------------------------------------------------------------------------------------
