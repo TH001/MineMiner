@@ -32,7 +32,7 @@ class Utility {
   }
 
   void mainThemeUIinventorys() { //main colorscheme for temporary UI parts
-    fill(200, 200, 200);
+    fill(100, 100, 100);
     stroke(255);
   }
 
