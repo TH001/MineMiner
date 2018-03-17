@@ -58,7 +58,7 @@ public PImage market;
 //main class body
 void setup() {
   size(1000, 600);
-  frameRate(30);
+  frameRate(60);
   colorMode(RGB);
   ellipseMode(CENTER);
 
