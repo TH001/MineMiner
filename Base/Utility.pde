@@ -20,10 +20,16 @@ class Utility {
     stroke(255);
   }
 
-  void mainTextUI() {  //main textparameter for debuggtextfor the UI
+  void mainTextUIcoin() {  //main textparameter for debuggtextfor the UI
     textSize(36);
     fill(0, 255, 0);
   }
+
+  void mainTextUIinv() {  //main textparameter for debuggtextfor the UI
+    textSize(12);
+    fill(0, 255, 0);
+  }
+
 
   void mainDebugTextUI() {  //main textparameter for debuggtextfor the UI
     textSize(12);

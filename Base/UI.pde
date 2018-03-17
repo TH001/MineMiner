@@ -54,7 +54,7 @@ class UI {
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 
 
-    util.mainTextUI();
+    util.mainTextUIcoin();
 
     //show text
     text("Coins: " + coins_, tx, ty);
@@ -77,7 +77,7 @@ class UI {
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 
 
-    util.mainDebugTextUI();
+    util.mainTextUIinv();
 
     //show text
     text("Stone: "   + stone_, tx, ty);
