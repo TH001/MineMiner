@@ -5,7 +5,7 @@ class UI {
   //window option UI
   float x_UI = 0;
   float x_UI_w1  = 250;   //w1 = end of first window, start of second window
-  float x_UI_w2  = 460;   //w2 = look above
+  float x_UI_w2  = 480;   //w2 = look above
   float y_UI_top = 0;     //differenz between y_UI_bot and y_UI_top = window height
   float y_UI_bot = 45;
   //window option DebugUI
@@ -62,7 +62,7 @@ class UI {
   }
 
   //window show inventory content
-  void showInv(int stone_, int iron_, int gold_, int diamond_) {
+  void showInv(int stone_, int iron_, int gold_, int diamond_, int wood_) {
 
     util.mainThemeUI();
 
@@ -72,7 +72,12 @@ class UI {
     float y1 = y_UI_top;
     float y2 = y_UI_bot;
     //coordinates text
-    float tx =  x1 + x_UI_text;
+    float tx0 =  x1 + x_UI_text;  //1st text fields, iron_ and diamond_
+    float tx1 = 70;   //1st number of items, stone_ and diamond_
+    float tx2 = 95;   //2nd text fields, iron_ and wood_
+    float tx3 = 140;  //2nd number of items, iron_ and wood_
+    float tx4 = 165;  //3rd text fields, gold_
+    float tx5 = 205;  //3rd number of items, gold_
     float ty = y_debug_UI_text + 6;  //top border distance
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
@@ -81,10 +86,16 @@ class UI {
     util.mainTextUIinv();
 
     //show text
-    text("Stone: "   + stone_, tx, ty);
-    text("Iron: "    + iron_, tx + 75, ty);
-    text("Gold: "    + gold_, tx + 140, ty);
-    text("Diamond: " + diamond_, tx, ty*2);
+    text("Stone:", tx0, ty);
+    text(stone_, tx0 + tx1, ty);
+    text("Iron:", tx0 + tx2, ty);
+    text(iron_, tx0 + tx3, ty);
+    text("Gold:", tx0 + tx4, ty);
+    text(gold_, tx0 + tx5, ty);
+    text("Diamond:", tx0, ty*2);
+    text(diamond_, tx0 + tx1, ty*2);
+    text("Wood:", tx0 + tx2, ty*2);
+    text(wood_, tx0 + tx3, ty*2);
   }
 
 
@@ -200,12 +211,11 @@ class UI {
     util.mainTextUIinventorys();
 
     //show text
-    text("Value:"     , tx0, ty0);
-    text(stonePrize_  , tx1, ty1);
-    text(ironPrize_   , tx2, ty2);
-    text(goldPrize_   , tx3, ty3);
+    text("Value:", tx0, ty0);
+    text(stonePrize_, tx1, ty1);
+    text(ironPrize_, tx2, ty2);
+    text(goldPrize_, tx3, ty3);
     text(diamondPrize_, tx4, ty4);
-   
   }
 
 
@@ -214,7 +224,7 @@ class UI {
   void show(Player p_, Market m_) {
     //usual
     coinValue(p_.coins);
-    showInv(p_.inv.stone.size(), p_.inv.iron.size(), p_.inv.gold.size(), p_.inv.diamond.size());
+    showInv(p_.inv.stone.size(), p_.inv.iron.size(), p_.inv.gold.size(), p_.inv.diamond.size(), p_.inv.wood.size());
 
 
     //debug
@@ -223,7 +233,7 @@ class UI {
       playerDir(parseInt(p_.dir.x), parseInt(p_.dir.y));
       invSpace(parseInt(p_.inv.calcWeight()), parseInt(p_.inv.weightLimit));
     }
-    
+
     if (selling == true) {
       buttonFrameMarket(m_.stonePrize, m_.ironPrize, m_.goldPrize, m_.diamondPrize);
     }
