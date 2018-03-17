@@ -19,7 +19,11 @@ class UI {
   float y_UI_text_coin = 35;
   float y_debug_UI_text = 12;
 
-
+  //controlP5 button parameters
+  public float px = 100;
+  public float py = 100;
+  public float sx = 100;
+  public float sy = 30;
 
 
 

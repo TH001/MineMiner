@@ -65,7 +65,15 @@ class Inventory {
   
   //--------------------------------------------------------------------------------------------------
   //sell functions
-  void sell(){
-    
+  void sell(String type){
+    switch(type){
+      case "stone":
+      
+      case "iron":
+      
+      case "gold":
+      
+      case "diamond":
+    }
   }
 }

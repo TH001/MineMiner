@@ -1,6 +1,6 @@
 /* version history
-Alpha 1.0 - 912 lines of code - Base, Box, Inventory, Item, Map, Market, Player, UI, Utility classes
-*/
+ Alpha 1.0 - 912 lines of code - Base, Box, Inventory, Item, Map, Market, Player, UI, Utility classes
+ */
 
 /*
 What we want to change:
@@ -35,7 +35,7 @@ private PVector newDir = new PVector();
 public UI mainUI;
 public Player player1;
 public Map mainMap;
-public Utility util = new Utility();
+public Utility util;
 public Market shop =new Market();
 
 //tools for buttons etc in UI
@@ -57,14 +57,15 @@ void setup() {
   colorMode(RGB);
   ellipseMode(CENTER);
 
+  //setting up UI and Utilities
+  mainUI = new UI();
+  util = new Utility(mainUI.px, mainUI.py, mainUI.sx, mainUI.sy);
+
   sell = new ControlP5(this);
   sell.setAutoDraw(true);
 
   util.importImages();
   util.initiateCP5();
-
-  //setting up UI
-  mainUI = new UI();
 
   //setting up player character
   player1 = new Player(startPos.x, startPos.y, 20, 100);
@@ -74,7 +75,7 @@ void setup() {
   if (!fogOfWar) {
     mainMap.show(true);
   }
-  
+
   //setting CP% windows to hide
   sell.hide();
 }
@@ -104,7 +105,6 @@ void draw() {
   player1.show();
 
   //show ControlP5 interaction windows
-  
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -187,10 +187,14 @@ void mousePressed() {
 //--------------------------------------------------------------------------------------------------
 //controlP5 events
 void SellStone() {
+  //player1.inv;
 }
 
 void SellIron() {
 }
 
 void SellGold() {
+}
+
+void SellDiamond() {
 }
