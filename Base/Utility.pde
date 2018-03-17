@@ -3,7 +3,7 @@ class Utility {
 
   //coloursetups
   void mainThemeUI() {    //main colourscheme for the UI
-    fill(0);
+    fill(0, 0, 0, 100);
     stroke(255);
   }
 

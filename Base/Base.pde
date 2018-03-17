@@ -21,6 +21,7 @@ public float intRadius = 100;
 
 private boolean fogOfWar = true;
 
+private PVector startPos = new PVector(100, 100);
 private PVector newDir = new PVector();
 
 //istances of custom classes
@@ -49,11 +50,13 @@ void setup() {
   util.importImages();
 
   //setting up player character
-  player1 = new Player(100, 100, 20, 100);
+  player1 = new Player(startPos.x, startPos.y, 20, 100);
 
   //mainMap
   mainMap = new Map(width, height, tileSize, tileSize, "../textures/maps/mainMap.png");
-  mainMap.show(true);
+  if(!fogOfWar){
+    mainMap.show(true);
+  }
 }
 
 

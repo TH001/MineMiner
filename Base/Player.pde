@@ -63,7 +63,7 @@ class Player {
   //collision checking
   boolean checkBoxes() {    //detect whether any box is too close to the player and he is colliding
     for (Box b : mainMap.boxes) {
-      if (this.newPos.dist(b.posM) <= r / 2 && b.type != 1) {
+      if (this.newPos.dist(b.posM) <= r * 0.75 && b.type != 1) {
         return true;
       }
     }
