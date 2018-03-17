@@ -165,7 +165,7 @@ class UI {
   //--------------------------------------------------------------------------------------------------
 
   //frame for buttons on market when sell
-  void buttonFrameMarket() {
+  void buttonFrameMarket(float stonePrize_, float ironPrize_, float goldPrize_, float diamondPrize_) {
 
     util.mainThemeUIinventorys();
 
@@ -199,17 +199,22 @@ class UI {
     util.mainTextUIinventorys();
 
     //show text
-    text("Value:", tx0, ty0);
+    text("Value:"     , tx0, ty0);
+    text(stonePrize_  , tx1, ty1);
+    text(ironPrize_   , tx2, ty2);
+    text(goldPrize_   , tx3, ty3);
+    text(diamondPrize_, tx4, ty4);
+   
   }
 
 
   //--------------------------------------------------------------------------------------------------
   //showing HUD via this method
-  void show(Player p_) {
+  void show(Player p_, Market m_) {
     //usual
     coinValue(p_.coins);
     showInv(p_.inv.stone.size(), p_.inv.iron.size(), p_.inv.gold.size(), p_.inv.diamond.size());
-    buttonFrameMarket();
+    buttonFrameMarket(m_.stonePrize, m_.ironPrize, m_.goldPrize, m_.diamondPrize);
 
 
     //debug
