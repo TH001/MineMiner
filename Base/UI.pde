@@ -1,15 +1,21 @@
 class UI { 
   //variables
   boolean showDebug = false;
+  //window option UI
   float x_UI = 0;
   float x_UI_w1 = 250;   //w1 = end of first window, start of second window
   float x_UI_w2 = 500;   //w2 = look above
   float y_UI_top = 0;    //differenz between y_UI_bot and y_UI_top = window height
-  float y_UI_bot = 45;  
+  float y_UI_bot = 45;
+  //window option DebugUI
   float x_debug_UI_w1 = 70;
   float y_debug_UI_w2 = 140;
   float y_debug_UI_top = height - 40;
   float y_debug_UI_bot = height;
+  //window options text pos
+  float x_UI_text = 10;
+  float y_UI_text = 35;
+  float y_debug_UI_text = 12;
 
   
 
@@ -31,12 +37,15 @@ class UI {
     float x2 = x_UI_w1;
     float y1 = y_UI_top;
     float y2 = y_UI_bot;
+    
+    float tx = x_UI_text;
+    float ty = y_UI_text;
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 
     util.mainTextUI();
 
-    text("Coins: " + coins_, x_UI + 10, y_UI_top + 35);
+    text("Coins: " + coins_, tx, ty);
   }
 
   //window for open inventory button
@@ -48,12 +57,15 @@ class UI {
     float x2 = x_UI_w2;
     float y1 = y_UI_top;
     float y2 = y_UI_bot;
+    
+    float tx = x_UI_text;
+    float ty = y_debug_UI_text + 6;  //top border distance
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
     
     util.mainDebugTextUI();
     
-    text("Stone: " + stone_ + "   " + "Iron: " + iron_ + "   " +  "Gold: " + gold_ + "   " + "Diamond: " + diamond_, x_UI_w1 + 10, y_UI_top + 18);   
+    text("Stone: " + stone_ + "   " + "Iron: " + iron_ + "   " +  "Gold: " + gold_ + "   " + "Diamond: " + diamond_, x_UI_w1 + tx, ty);   
     
   }
 
@@ -72,8 +84,8 @@ class UI {
     float y1 = y_debug_UI_top;
     float y2 = y_debug_UI_bot;
 
-    float tx = x1 + 10;  // distance from left side stroke
-    float ty = 12;  //distance from top stroke
+    float tx = x_UI_text;  // distance from left side stroke
+    float ty = y_debug_UI_text;  //distance from top stroke
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 
@@ -95,8 +107,8 @@ class UI {
     float y1 = y_debug_UI_top;
     float y2 = y_debug_UI_bot;
 
-    float tx = x1 + 10;  // distance from left side stroke
-    float ty = 12;  //distance from top stroke
+    float tx = x_debug_UI_w1 + x_UI_text;  // distance from left side stroke
+    float ty = y_debug_UI_text;  //distance from top stroke
 
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
@@ -107,6 +119,20 @@ class UI {
     text("dir", tx, y1 + ty);
     text(x_, tx, y1 + ty*2);
     text(y_, tx, y1 + ty*3);
+  }
+  
+  //showing players inventory space
+  void invSpace() {
+    
+    util.mainThemeUI();
+
+    float x1 = x_debug_UI_w1;
+    float x2 = y_debug_UI_w2;
+    float y1 = y_debug_UI_top;
+    float y2 = y_debug_UI_bot;
+
+  
+    
   }
 
 
