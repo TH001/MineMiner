@@ -34,11 +34,11 @@ class UI {
 
     util.mainTextUI();
 
-    text("Coins: " + coins_, 10, 35);
+    text("Coins: " + coins_, x_UI + 10, y_UI_top + 35);
   }
 
   //window for open inventory button
-  void openInv() {
+  void showInv(int stone_, int iron_, int gold_, int diamond_) {
 
     util.mainThemeUI();
 
@@ -48,7 +48,14 @@ class UI {
     float y2 = y_UI_bot;
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
+    
+    util.mainDebugTextUI();
+    
+    text("Stone: " + stone_ + "   " + "Iron: " + iron_ + "   " +  "Gold: " + gold_ + "   " + "Diamond: " + diamond_, x_UI_w1 + 10, y_UI_top + 18);
+   
   }
+
+
 
   //--------------------------------------------------------------------------------------------------
   //Debug windows
@@ -107,7 +114,7 @@ class UI {
   void show(Player p_) {
     //usual
     coinValue(p_.coins);
-    openInv();
+    showInv(p_.inv.stone.size(), p_.inv.iron.size(), p_.inv.gold.size(), p_.inv.diamond.size());
 
     //debug
     if (showDebug == true) {
