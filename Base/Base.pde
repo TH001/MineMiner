@@ -39,18 +39,25 @@ private PVector newDir = new PVector();
 public UI mainUI;
 public Player player1;
 public Map mainMap;
+public Map underworld;
+public Map overworld;
 public Utility util;
-public Market shop =new Market();
+public Market shop = new Market();
 
 //tools for buttons etc in UI
 ControlP5 sell;
+ControlP5 nav;
 
 //textures for the map
 public PImage stone;
+public PImage grass;
 public PImage pavement;
 public PImage iron_ore;
 public PImage gold_ore;
 public PImage diamond_ore;
+public PImage forest;
+public PImage water;
+public PImage lava;
 
 public PImage market;
 
@@ -62,12 +69,17 @@ void setup() {
   colorMode(RGB);
   ellipseMode(CENTER);
 
+  println(color(255, 74, 0));
+
   //setting up UI and Utilities
   mainUI = new UI();
   util = new Utility(mainUI.px, mainUI.py, mainUI.sx, mainUI.sy, mainUI.boff);
 
   sell   = new ControlP5(this);
+  nav    = new ControlP5(this);
+
   sell.setAutoDraw(true);
+  nav.setAutoDraw(true);
 
   util.importImages();
   util.initiateCP5();
@@ -76,8 +88,14 @@ void setup() {
   player1 = new Player(startPos.x, startPos.y, 20, 100);
 
   //mainMap
-  mainMap = new Map(width, height, tileSize, tileSize, "../textures/maps/mainMap.png");
-  if (!fogOfWar) {
+  underworld = new Map(width, height, tileSize, tileSize, "../textures/maps/mainMap.png");
+
+  //overworld
+  overworld = new Map(width, height, tileSize, tileSize, "../textures/maps/overworld.png");
+
+  //mainMap
+  mainMap = overworld;
+  if (!fogOfWar || mainMap == overworld) {
     mainMap.show(true);
   }
 
@@ -94,7 +112,7 @@ void draw() {
 
   //
 
-  if (fogOfWar) {
+  if (fogOfWar && mainMap == underworld) {
     background(0);
   }
 
@@ -218,5 +236,17 @@ void SellGold() {
 void SellDiamond() {
   if (player1 != null) {
     player1.inv.sell("diamond");
+  }
+}
+
+void ChangeMap() {
+  if (player1 != null) {
+    if (mainMap == overworld) {
+      mainMap = underworld;
+    } else {
+      mainMap = overworld;
+      mainMap.show(true);
+    }
+    player1.pos = startPos;
   }
 }

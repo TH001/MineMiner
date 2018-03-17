@@ -16,6 +16,8 @@ class Player {
   private float r;
   private float speed = 3;
 
+  private Box cBox = null;
+
   //---------------------------------------------------------------------------
   //constructor  
   Player(float x_, float y_, float r_, int coins_) {
@@ -94,13 +96,17 @@ class Player {
     this.gridPos.x = this.pos.x / tileSize;
     this.gridPos.y = this.pos.y / tileSize;
   }
-  
+
   //--------------------------------------------------------------------------------------------------
   //get and set methods
-  void addCoins(float arg){
+  void addCoins(float arg) {
     this.coins += arg;
   }
-  
+
+  void setBox(Box b_) {
+    this.cBox = b_;
+  }
+
   //---------------------------------------------------------------------------
   //shows player on screen
   void show() {  
@@ -113,5 +119,10 @@ class Player {
     fill(255, 0, 0);
     stroke(0);
     ellipse(this.pos.x, this.pos.y, r, r);
+
+    //check distance to open interactable
+    if (cBox != null) {
+      util.keepOpen(cBox);
+    }
   }
 }

@@ -64,6 +64,12 @@ class Map {
           terrain[i] = 4;
         } else if (col == -16711681) {        //cyan - diamond
           terrain[i] = 5;
+        } else if(col == -16755935) {         //dark green - forest
+          terrain[i] = 6;
+        } else if(col == -16749057) {         //light cyany blue - water
+          terrain[i] = 7;
+        } else if(col == -46592) {            //orange - lava
+          terrain[i] = 8;
         } else if (col == -65536) {
           terrain[i] = 100;                   //red - sell point
         } else {
