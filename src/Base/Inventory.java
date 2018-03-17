@@ -8,16 +8,41 @@ public class Inventory {
 	private int inventoryspace = 64;
 	private int nextitem = 0;
 	private Item[] inventoryslot = new Item[inventoryspace];
+	private double inventoryweight = 0;
+	private double inventoryweightlimit = 100;
 	private int tempstate = 0;
+	private double tempvalue = 0;
 	
 	public Inventory() {
-		// TODO Auto-generated constructor stub
+		//creating basic Items
+		createItem("wood", 64, 0, 0.5, false, 0);
+		createItem("stone", 64, 0, 1, false, 0);
+		createItem("iron", 64, 0, 1.5, false, 0);
+		createItem("gold", 64, 0, 2, false, 0);
+		createItem("diamond", 64, 0, 4, false, 0);
+		
 	}
 	
-	public int createItem(String name, int stackvalue, int startvalue, boolean duability, double usageprozentage) {
-		inventoryslot[nextitem]= new Item(name, stackvalue, startvalue, duability, usageprozentage);
+	public int createItem(String name, int stackvalue, int startvalue, double weight, boolean duability, double usageprozentage) {
+		for (int i = 0; i < nextitem; i++) {
+			if(inventoryslot[i].getItemname()==name) return -1;	//item already exists
+		}
+		inventoryslot[nextitem]= new Item(name, stackvalue, startvalue, weight, duability, usageprozentage);
 		nextitem++;
 		return 0;
+	}
+	
+	public double getInventoryWeight() {
+		inventoryweight= 0;
+		for (int i = 0; i < nextitem; i++) {
+			inventoryweight=inventoryweight+inventoryslot[i].getStackWeight();
+		}
+		return inventoryweight;
+	}
+	
+	public int checkInventoryWeight() {
+		if(getInventoryWeight()>inventoryweightlimit) return -1;
+		else return 0;
 	}
 	
 	public int addItem(String name, int value) {

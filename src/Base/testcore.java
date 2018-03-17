@@ -9,11 +9,12 @@ public class testcore {
 	}
 
 	public static void main(String[] args) {
-		inv.createItem("Holz", 64, 0, false, 0);
-		inv.createItem("Stein", 64, 0, false, 0);
-		System.out.println(inv.addItem("Holz", 2));
-		System.out.println(inv.addItem("Holz", -3));
-		System.out.println(inv.addItem("Stein", 67));
+		inv.createItem("wood", 64, 0, 0.5, false, 0);
+		inv.createItem("stone", 64, 0, 1, false, 0);
+		System.out.println("wood overflow: "+inv.addItem("wood", 2));
+		System.out.println("wood overflow: "+inv.addItem("wood", -3));
+		System.out.println("stone overflow: "+inv.addItem("stone", 67));
+		System.out.println("inventory weight: "+inv.getInventoryWeight());
 	}
 
 }

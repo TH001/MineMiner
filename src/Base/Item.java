@@ -8,11 +8,14 @@ public class Item {
 	private int value;
 	private boolean itemduability;
 	private double usage;
+	private double itemweight;
+	private double stackweight;
 
-	public Item(String name, int stackvalue, int startvalue, boolean duability, double usageprozentage) {
+	public Item(String name, int stackvalue, int startvalue, double weight, boolean duability, double usageprozentage) {
 		itemname = name;
 		stacksize = stackvalue;
-		value =startvalue;
+		value = startvalue;
+		itemweight = weight;
 		itemduability = duability;
 		usage = usageprozentage;
 		System.out.println("new Item: "+name);
@@ -42,6 +45,14 @@ public class Item {
 			return 0;
 		}
 	}
+	
+	public double getStackWeight() {
+		stackweight=value*itemweight;
+		System.out.println(getItemname()+" stack weight: "+stackweight);
+
+		return stackweight;
+	}
+	
 	public double changeDuability(double duabilitychange) {
 		if(usage+duabilitychange>100) {
 			usage = 1;
