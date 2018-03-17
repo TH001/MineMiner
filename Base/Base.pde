@@ -117,13 +117,13 @@ void draw() {
   //show map
   mainMap.show(false);
 
-  //show UI
-  mainUI.show(player1, shop);
-
   resizeDir();
   //show Player
   player1.move(newDir);
   player1.show();
+
+  //show UI
+  mainUI.show(player1, shop);
 
   //update market
   if (ccicle == cicle) {
