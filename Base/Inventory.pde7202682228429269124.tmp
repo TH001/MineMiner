@@ -62,7 +62,6 @@ class Inventory {
     weight += iron.size()    * ironWeight;
     weight += gold.size()    * goldWeight;
     weight += diamond.size() * diamondWeight;
-    weight += wood.size()    * woodWeight;
 
     return weight;
   }

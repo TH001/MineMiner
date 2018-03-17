@@ -69,8 +69,6 @@ void setup() {
   colorMode(RGB);
   ellipseMode(CENTER);
 
-  println(color(255, 74, 0));
-
   //setting up UI and Utilities
   mainUI = new UI();
   util = new Utility(mainUI.px, mainUI.py, mainUI.sx, mainUI.sy, mainUI.boff);
@@ -119,13 +117,13 @@ void draw() {
   //show map
   mainMap.show(false);
 
-  //show UI
-  mainUI.show(player1, shop);
-
   resizeDir();
   //show Player
   player1.move(newDir);
   player1.show();
+
+  //show UI
+  mainUI.show(player1, shop);
 
   //update market
   if (ccicle == cicle) {

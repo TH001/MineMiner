@@ -153,6 +153,7 @@ class Utility {
       } else if (selling == true) {
         sell.hide();
         selling = false;
+        mainMap.show(true);
       }
     }
   }
@@ -160,9 +161,10 @@ class Utility {
   void keepOpen(Box b_){
    if(player1.pos.dist(b_.pos) <= b_.threshold){
      
-   } else {
+   } else if (selling == true) {
     sell.hide();
     selling = false;
+    mainMap.show(true);
    }
   }
   //--------------------------------------------------------------------------------------------------
