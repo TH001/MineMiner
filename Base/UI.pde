@@ -5,7 +5,7 @@ class UI {
   //window option UI
   float x_UI = 0;
   float x_UI_w1 = 250;   //w1 = end of first window, start of second window
-  float x_UI_w2 = 500;   //w2 = look above
+  float x_UI_w2 = 460;   //w2 = look above
   float y_UI_top = 0;    //differenz between y_UI_bot and y_UI_top = window height
   float y_UI_bot = 45;
   //window option DebugUI
@@ -16,7 +16,7 @@ class UI {
   float y_debug_UI_bot;
   //window options text pos
   float x_UI_text = 10;
-  float y_UI_text = 35;
+  float y_UI_text_coin = 35;
   float y_debug_UI_text = 12;
 
 
@@ -45,7 +45,7 @@ class UI {
     float y2 = y_UI_bot;
     //coordinates text
     float tx = x_UI_text;
-    float ty = y_UI_text;
+    float ty = y_UI_text_coin;
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 
@@ -56,7 +56,7 @@ class UI {
     text("Coins: " + coins_, tx, ty);
   }
 
-  //window for open inventory button
+  //window show inventory content
   void showInv(int stone_, int iron_, int gold_, int diamond_) {
 
     util.mainThemeUI();
@@ -67,21 +67,19 @@ class UI {
     float y1 = y_UI_top;
     float y2 = y_UI_bot;
     //coordinates text
-    float tx = x_UI_text;
+    float tx =  x1 + x_UI_text;
     float ty = y_debug_UI_text + 6;  //top border distance
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 
+
     util.mainDebugTextUI();
 
     //show text
-    //text("Gold: " + gold_ + "   " + "Diamond: " + diamond_, x_UI_w1 + tx, ty);
-    text("Stone: " + stone_, x1 + tx, ty);
-    text("Iron: " + iron_, x1 + tx + 70, ty);
-    text("Gold: " + gold_, x1 + tx + 140, ty);
-    text("Diamond: " + diamond_, x1 + tx, ty*2);
-    
-    
+    text("Stone: "   + stone_, tx, ty);
+    text("Iron: "    + iron_, tx + 75, ty);
+    text("Gold: "    + gold_, tx + 140, ty);
+    text("Diamond: " + diamond_, tx, ty*2);
   }
 
 
