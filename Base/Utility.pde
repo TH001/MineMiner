@@ -85,10 +85,12 @@ class Utility {
   }
 
   void interact(Box b_, String arg) {  //makes the player able to interact with boxes, handles interaction
-    if (arg == "mine") {
-      mine(b_);
-    } else if (arg == "open") {
-      open(b_);
+    if (b_ != null) {
+      if (arg == "mine" && b_.mineable) {
+        mine(b_);
+      } else if (arg == "open" && b_.interactable) {
+        open(b_);
+      }
     }
   }
 
@@ -98,11 +100,11 @@ class Utility {
     if (b_ == null) {
       return;
     }
-    if(player1.inv.checkWeight()){
+    if (player1.inv.checkWeight()) {
       println("Inventory full!");
       return;
     }
-    
+
     int tmpType = b_.getType();
 
     b_.setType(1);
@@ -114,6 +116,9 @@ class Utility {
   }
 
   void open(Box b_) {
+    if (b_.type == 100) {
+      shop.show();
+    }
   }
 
   //--------------------------------------------------------------------------------------------------
@@ -124,7 +129,7 @@ class Utility {
     iron_ore    = loadImage("../textures/iron_ore.png");
     gold_ore    = loadImage("../textures/gold_ore.png");
     diamond_ore = loadImage("../textures/diamond_ore.png");
-    
+
     market      = loadImage("../textures/market.png");
   }
 }
