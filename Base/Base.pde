@@ -120,7 +120,7 @@ void draw() {
   mainMap.show(false);
 
   //show UI
-  mainUI.show(player1);
+  mainUI.show(player1, shop);
 
   resizeDir();
   //show Player

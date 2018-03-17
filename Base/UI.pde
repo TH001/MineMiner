@@ -143,7 +143,7 @@ class UI {
   void invSpace(float invSpace_, float maxSpace_) {
 
     util.mainThemeUI();
-    
+
     //coordinates window
     float x1 = x_debug_UI_w2;
     float x2 = x_debug_UI_w3;
@@ -152,7 +152,6 @@ class UI {
     //coordinates text
     float tx = x_debug_UI_w2 + x_UI_text;  // distance from left side stroke
     float ty = y_debug_UI_text;  //distance from top stroke
-
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 
@@ -166,40 +165,56 @@ class UI {
   //--------------------------------------------------------------------------------------------------
 
   //frame for buttons on market when sell
-  void buttonFrameMarket() {
+  void buttonFrameMarket(float stonePrize_, float ironPrize_, float goldPrize_, float diamondPrize_) {
 
     util.mainThemeUIinventorys();
-    
+
     //coordinates window
     float nButton = 4; //number of buttons
     float nDistanceButtons = nButton - 1; //number of distances between buttons
     float b1 = 3; //border distance
     float x1 = px - b1;
     float x2 = px + nButton*sx + nDistanceButtons*boff + b1;
-    float y1 = px - 16;
-    float y2 = px + sy + b1;
+    float y1 = py - 16;
+    float y2 = py + sy + b1;
     //coordinates text
-    float tx;
-    float ty;
-    
-    
+    //text Value
+    float tx0 = px + b1;
+    float ty0 = py - b1;
+    //button sell stone
+    float tx1 = (px + b1) + (sx * ((1*nButton)/nButton)) + ((((1*nButton)/nButton)-1)*boff) - (0.5*sx); //just dont ask
+    float ty1 = py - b1;
+    //button sell iron
+    float tx2 = (px + b1) + (sx * ((2*nButton)/nButton)) + ((((2*nButton)/nButton)-1)*boff) - (0.5*sx);    
+    float ty2 = py - b1;   
+    //button sell gold
+    float tx3 = (px + b1) + (sx * ((3*nButton)/nButton)) + ((((3*nButton)/nButton)-1)*boff) - (0.5*sx);
+    float ty3 = py - b1;
+    //button sell diamonds
+    float tx4 = (px + b1) + (sx * ((4*nButton)/nButton)) + ((((4*nButton)/nButton)-1)*boff) - (0.5*sx);
+    float ty4 = py - b1;
+
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
-    
+
     util.mainTextUIinventorys();
-    
+
     //show text
-    text("",0,0);
-    
+    text("Value:"     , tx0, ty0);
+    text(stonePrize_  , tx1, ty1);
+    text(ironPrize_   , tx2, ty2);
+    text(goldPrize_   , tx3, ty3);
+    text(diamondPrize_, tx4, ty4);
+   
   }
- 
+
 
   //--------------------------------------------------------------------------------------------------
   //showing HUD via this method
-  void show(Player p_) {
+  void show(Player p_, Market m_) {
     //usual
     coinValue(p_.coins);
     showInv(p_.inv.stone.size(), p_.inv.iron.size(), p_.inv.gold.size(), p_.inv.diamond.size());
-    buttonFrameMarket();
+    buttonFrameMarket(m_.stonePrize, m_.ironPrize, m_.goldPrize, m_.diamondPrize);
 
 
     //debug
