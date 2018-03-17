@@ -54,7 +54,7 @@ class Map {
         int col = map.pixels[i];
         
         //setting terrain type corresponding to colour
-        if (col == -1) {               //white - walkable
+        if (col == -1) {                      //white - walkable
           terrain[i] = 1;
         } else if (col == -16777216) {        //black
           terrain[i] = 2;
@@ -62,8 +62,10 @@ class Map {
           terrain[i] = 3;
         } else if (col == -2661) {            //yellow - gold
           terrain[i] = 4;
-        } else if (col == -16711681) {         //cyan - diamond
+        } else if (col == -16711681) {        //cyan - diamond
           terrain[i] = 5;
+        } else if (col == -65536) {
+          terrain[i] = 100;                   //red - sell point
         } else {
           terrain[i] = 0;
         }

@@ -40,6 +40,8 @@ public PImage iron_ore;
 public PImage gold_ore;
 public PImage diamond_ore;
 
+public PImage market;
+
 //--------------------------------------------------------------------------------------------------
 //main class body
 void setup() {
@@ -63,6 +65,11 @@ void setup() {
 //--------------------------------------------------------------------------------------------------
 // draw method, gets called every frame
 void draw() {
+  
+  //reserved for print statements
+  
+  //
+  
   if(fogOfWar){
   background(0);
   }

@@ -98,6 +98,11 @@ class Utility {
     if (b_ == null) {
       return;
     }
+    if(player1.inv.checkWeight()){
+      println("Inventory full!");
+      return;
+    }
+    
     int tmpType = b_.getType();
 
     b_.setType(1);
@@ -119,5 +124,7 @@ class Utility {
     iron_ore    = loadImage("../textures/iron_ore.png");
     gold_ore    = loadImage("../textures/gold_ore.png");
     diamond_ore = loadImage("../textures/diamond_ore.png");
+    
+    market      = loadImage("../textures/market.png");
   }
 }

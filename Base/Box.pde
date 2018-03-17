@@ -36,6 +36,10 @@ class Box {
         image(gold_ore, this.pos.x, this.pos.y, this.size, this.size);
       } else if(type == 5){
         image(diamond_ore, this.pos.x, this.pos.y, this.size, this.size);
+        
+       //buildings
+      } else if (type == 100) {
+        image(market, this.pos.x, this.pos.y, this.size, this.size);
       } else {
         rect(this.pos.x, this.pos.y, this.size, this.size);
       }
