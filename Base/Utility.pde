@@ -64,28 +64,51 @@ class Utility {
 
   //--------------------------------------------------------------------------------------------------
   //interaction
-  Box interacted(){
+  Box interacted() {
     PVector mouse = new PVector(mouseX, mouseY);
     float minDist = width * height;
     float currDist = 0;
     Box curr = null;
-    
+
     //check for box nearest to mouse
-    for(Box b : mainMap.boxes){
+    for (Box b : mainMap.boxes) {
       currDist = mouse.dist(b.posM);
-      
-      if(currDist <= minDist){
+
+      if (currDist <= minDist && mouse.dist(player1.pos) <= intRadius) {
         minDist = currDist;
         curr = b;
       }
     }
-    
+
     //return box nearest to mouse
-    return curr; 
+    return curr;
   }
-  
-  void interact(Box b_){
-    b_.type = 1;
+
+  void interact(Box b_, String arg) {  //makes the player able to interact with boxes, handles interaction
+    if (arg == "mine") {
+      mine(b_);
+    } else if (arg == "open") {
+      open(b_);
+    }
+  }
+
+  //--------------------------------------------------------------------------------------------------
+  //interaction childmethods
+  void mine(Box b_) {
+    if (b_ == null) {
+      return;
+    }
+    int tmpType = b_.getType();
+
+    b_.setType(1);
+    b_.show(true);
+
+    if (tmpType != 1) {
+      player1.inv.add(new Item(tmpType));
+    }
+  }
+
+  void open(Box b_) {
   }
 
   //--------------------------------------------------------------------------------------------------

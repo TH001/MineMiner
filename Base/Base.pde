@@ -1,7 +1,5 @@
 /*
 What we want to change:
- - detect wether right or left mouse button get pressed
- - use mouseclick for interactions
  - slim code
  - add more textures
  - add buildings
@@ -19,6 +17,13 @@ import java.awt.event.ActionListener;
 //variables
 private int tileSize = 10; //size of each maptile or box
 
+public float intRadius = 100;
+
+private boolean fogOfWar = true;
+
+private PVector newDir = new PVector();
+
+//istances of custom classes
 public UI mainUI = new UI();
 
 public Player player1;
@@ -26,8 +31,6 @@ public Player player1;
 public Map mainMap;
 
 public Utility util = new Utility();
-
-private PVector newDir = new PVector();
 
 //textures for the map
 public PImage stone;
@@ -57,7 +60,9 @@ void setup() {
 //--------------------------------------------------------------------------------------------------
 // draw method, gets called every frame
 void draw() {
-  //background(50);
+  if(fogOfWar){
+  background(0);
+  }
 
   //show map
   mainMap.show(false);
@@ -136,9 +141,15 @@ void keyReleased() {
 }
 
 void mousePressed() {
-  if(mouseButton == 37){
-    util.interact(util.interacted());
+  if(mouseButton == 37){  //LMB
+    util.interact(util.interacted(), "mine");
   }
   
-  println(mouseButton);
+  if(mouseButton == 38){  //MMB
+    
+  }
+  
+  if(mouseButton == 39){  //RMB
+    
+  }
 }

@@ -1,9 +1,9 @@
 class Box {
   //variables
-  public int type = 0;
+  private int type = 0;
   private int size;
 
-  private float threshold = 100;
+  private float threshold = 150;
 
   private PVector pos = new PVector();
   private PVector posM = new PVector();
@@ -50,5 +50,15 @@ class Box {
       return true;
     }
     return false;
+  }
+  
+  //--------------------------------------------------------------------------------------------------
+  //get and set methods
+  int getType(){
+    return this.type;
+  }
+  
+  void setType(int type_){
+    this.type = type_;
   }
 }

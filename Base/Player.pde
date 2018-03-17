@@ -63,7 +63,7 @@ class Player {
   //collision checking
   boolean checkBoxes() {    //detect whether any box is too close to the player and he is colliding
     for (Box b : mainMap.boxes) {
-      if (this.newPos.dist(b.posM) <= r && b.type != 1) {
+      if (this.newPos.dist(b.posM) <= r / 2 && b.type != 1) {
         return true;
       }
     }
@@ -98,6 +98,12 @@ class Player {
   //---------------------------------------------------------------------------
   //shows player on screen
   void show() {  
+    //show interaction radius
+    fill(255, 255, 255, 0);
+    stroke(255, 255, 255, 100);
+    ellipse(this.pos.x, this.pos.y, intRadius * 2, intRadius * 2);
+    
+    //show player
     fill(255, 0, 0);
     stroke(0);
     ellipse(this.pos.x, this.pos.y, r, r);
