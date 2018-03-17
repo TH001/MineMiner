@@ -23,6 +23,12 @@ public class testcore {
 		for (int i = 0; i < inventoryview.length; i++) {
 			System.out.println(inventoryview[i][0]+"|"+inventoryview[i][1]);
 		}
+		
+		inv.createItem("axt", 8, 2, 1.2, true, 1);
+		inv.useItem("axt", -1);
+		inv.useItem("axt", -0.5);
+		inv.useItem("axt", -0.5);
+		inv.useItem("axt", -2);
 	}
 
 }

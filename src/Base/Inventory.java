@@ -84,7 +84,17 @@ public class Inventory {
 		 * @return */
 	}
 	
-	
+	public int useItem(String name, double duabilitychange) {
+		for (int i = 0; i < nextitem; i++) {
+			if(inventoryslot[i].getItemname()==name) {
+				tempvalue=inventoryslot[i].changeDuability(duabilitychange);
+//				if(tempvalue<0)System.out.println("item could not be uses that mutch");
+//				else if(tempvalue==0)System.out.println("item used up");
+//				else if(tempvalue==2)System.out.println("item unused");
+			}			
+		}
+		return -2; // item not found
+	}
 	
 	public String[][] outputallitems() {
 		inventoryout = new String[nextitem][2];

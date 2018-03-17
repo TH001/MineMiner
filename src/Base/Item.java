@@ -58,31 +58,46 @@ public class Item {
 	}
 	
 	public double changeDuability(double duabilitychange) {
-		if(usage+duabilitychange>100) {
-			usage = 1;
-			return 1;
-		}
-		else if(usage+duabilitychange>0) {
-			return (usage+duabilitychange);
-		}
-		else if(usage+duabilitychange==0) {
-			if(value<1) {
-				value=value-1;
-				usage=1;
-				return 1;
+		if(value>0) {
+			if(usage+duabilitychange>100) {
+				//max duability
+				usage = 1;
+				System.out.println(getItemname()+" repaired");
+				return 2;
 			}
-			else if(value==1) {
-				value=0;
-				usage=0;
-				return 0;
+			else if(usage+duabilitychange==0) {
+				if(value>1) {
+					//one used up ... using next one
+					value=value-1;
+					usage=1;
+					System.out.println(getItemname()+" used, "+getItemname()+" is broken");
+					System.out.println("replacement "+getItemname()+ " loaded");
+					return 2;
+				}
+				else /*if(value==1)*/ {
+					//one used up stack empty
+					value=0;
+					usage=0;
+					System.out.println(getItemname()+" used, "+getItemname()+" is broken");
+					System.out.println("no replacement "+getItemname()+ " stored");
+					return 0;
+				}
 			}
+			else if(usage+duabilitychange<0) {
+				//negative use not possible returning overflow use
+				return (usage+duabilitychange);
+			}		
 			else {
-				return -1;
+				//used!
+				usage=usage+duabilitychange;
+				System.out.println(getItemname()+" used, "+ usage + " left over");
+				return usage;
 			}
 		}
 		else {
-			usage=usage+duabilitychange;
-			return 0;
+			//no item -> no use
+			System.out.println("no "+getItemname()+", "+getItemname()+" could not be used");
+			return -1;
 		}
 	}
 
