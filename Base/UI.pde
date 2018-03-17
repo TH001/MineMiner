@@ -1,12 +1,22 @@
 class UI { 
   //variables
   boolean showDebug = false;
+  float x_UI = 0;
+  float x_UI_w1 = 250;   //w1 = end of first window, start of second window
+  float x_UI_w2 = 500;   //w2 = look above
+  float y_UI_top = 0;    //differenz between y_UI_bot and y_UI_top = window height
+  float y_UI_bot = 45;  
+  float x_debug_UI;
+  float y_debug_UI;
+  
 
   //--------------------------------------------------------------------------------------------------
   //constructor
   UI() {
-  
   }
+  
+  //--------------------------------------------------------------------------------------------------
+  //methodes -> UI windows
 
   //showing the players amount of currency
   void coinValue(int coins_) {
@@ -14,10 +24,10 @@ class UI {
     //show coins
     util.mainThemeUI();
 
-    float x1 = 0;
-    float x2 = 250;
-    float y1 = 0;
-    float y2 = 45;
+    float x1 = x_UI;
+    float x2 = x_UI_w1;
+    float y1 = y_UI_top;
+    float y2 = y_UI_bot;
 
     quad(x1, y1, x2, y1, x2, y2, x1, y2);
 
@@ -25,6 +35,22 @@ class UI {
 
     text("Coins: " + coins_, 10, 35);
   }
+
+  //window for open inventory button
+  void openInv() {
+
+    util.mainThemeUI();
+
+    float x1 = x_UI_w1;
+    float x2 = x_UI_w2;
+    float y1 = y_UI_top;
+    float y2 = y_UI_bot;
+
+    quad(x1, y1, x2, y1, x2, y2, x1, y2);
+  }
+
+  //--------------------------------------------------------------------------------------------------
+  //Debug windows
 
   //showing the players position coordinates
   void playerPos(float x_, float y_) {
@@ -50,6 +76,7 @@ class UI {
     text("y: " + y_, tx, y1 + ty*3);
   }
 
+  //showing players direction
   void playerDir(float x_, float y_) {
 
     util.mainThemeUI();
@@ -73,17 +100,7 @@ class UI {
     text(y_, tx, y1 + ty*3);
   }
 
-  void openInv() {
 
-    util.mainThemeUI();
-
-    float x1 = 310;
-    float x2 = 500;
-    float y1 = 0;
-    float y2 = 45;
-
-    quad(x1, y1, x2, y1, x2, y2, x1, y2);
-  }
 
   //showing HUD via this method
   void show(Player p_) {
