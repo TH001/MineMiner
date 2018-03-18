@@ -43,6 +43,7 @@ public Map underworld;
 public Map overworld;
 public Utility util;
 public Market shop = new Market();
+Inventory_th inv= new Inventory_th();
 
 //tools for buttons etc in UI
 ControlP5 sell;
@@ -84,6 +85,9 @@ void setup() {
 
   //setting up player character
   player1 = new Player(startPos.x, startPos.y, 20, 100);
+  
+  //showing tom's inventory works aswell
+  inv.createItem("axt", 8, 2, 1.2, true, 1);
 
   //mainMap
   underworld = new Map(width, height, tileSize, tileSize, "../textures/maps/mainMap.png");
